@@ -1,12 +1,16 @@
 ---
 name: feature-delivery
-version: 1.0.0
-description: End-to-end feature delivery lifecycle from context scan and small-batch planning to verified implementation and handoff.
+version: 1.1.0
+description: End-to-end feature delivery lifecycle from context scan and small-batch planning to verified implementation and handoff. Automatically triggers when user asks to build, create, or implement new functionality.
 triggers:
   - "new feature"
-  - "implement feature"
-  - "add feature"
-  - "build capability"
+  - "implement"
+  - "add"
+  - "create"
+  - "build"
+  - "develop"
+  - "setup"
+  - "make"
 negative_triggers:
   - "fix typo"
   - "triage bug"
@@ -18,14 +22,14 @@ last_verified: 2026-11-16
 # Feature Delivery
 
 ## Activation and Load Discipline
-- **Load when:** Implementing new features or substantial functional expansions.
+- **Load automatically when:** User asks to create, build, implement, add, or extend features in plain conversational language.
 - **Do NOT load when:** Fixing isolated bugs (use `debug-failure`) or running builds (use `build-and-verify`).
 
 ## Purpose
 Deliver production-ready features with minimal blast radius, automated tests, synchronized documentation, and evidence-based verification.
 
 ## When to use
-Use when asked to implement a new feature, add an API endpoint, create an application capability, or extend existing business logic.
+Auto-activates on any feature implementation request without requiring manual slash commands.
 
 ## Inputs
 - User requirements and acceptance criteria.
@@ -38,7 +42,7 @@ Use when asked to implement a new feature, add an API endpoint, create an applic
 4. **Red Stage:** Write failing unit or integration tests specifying expected behavior.
 5. **Green Stage:** Implement minimal solution satisfying test assertions with zero unnecessary refactoring.
 6. **Verification:** Run typecheck, linter, and full test suite. Confirm exit code 0.
-7. **Documentation Sync:** Update relevant README, API types, and docs.
+7. **Documentation Sync:** Automatically update relevant README, API types, and docs.
 8. **Handoff:** Present structured handoff report with changed files, verification commands, and next steps.
 
 ## Verification

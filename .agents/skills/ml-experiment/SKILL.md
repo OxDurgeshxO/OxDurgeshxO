@@ -1,13 +1,18 @@
 ---
 name: ml-experiment
-version: 1.0.0
-description: Dataset validation, data leakage prevention, reproducible training, metric evaluation, model artifact versioning, and explainability.
+version: 1.1.0
+description: Dataset validation, data leakage prevention, reproducible training, metric evaluation, model artifact versioning, and explainability. Automatically triggers on machine learning and data modeling tasks.
 triggers:
-  - "train model"
+  - "model"
+  - "train"
+  - "dataset"
+  - "predict"
+  - "metrics"
   - "ml experiment"
-  - "evaluate model"
-  - "run benchmark"
-  - "model training"
+  - "benchmark"
+  - "pytorch"
+  - "scikit-learn"
+  - "xgboost"
 negative_triggers:
   - "write css"
   - "fix typo"
@@ -19,14 +24,14 @@ last_verified: 2026-11-16
 # ML Experiment
 
 ## Activation and Load Discipline
-- **Load when:** Conducting machine learning experiments, training models, evaluating metrics, or logging benchmarks.
+- **Load automatically when:** User mentions machine learning models, training, datasets, evaluations, or benchmarks.
 - **Do NOT load when:** Writing non-ML application code or web frontends.
 
 ## Purpose
 Execute reproducible machine learning pipelines with rigorous data leakage prevention, metric benchmarking, and model artifact tracking.
 
 ## When to use
-Use when training Scikit-Learn, PyTorch, XGBoost, or Gemini fine-tuned models, evaluating feature importance, or benchmarking datasets.
+Auto-activates on any data science, ML modeling, PyTorch, XGBoost, or Gemini fine-tuning request.
 
 ## Inputs
 - Dataset paths (train/validation/test splits).

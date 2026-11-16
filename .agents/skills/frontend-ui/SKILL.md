@@ -1,13 +1,19 @@
 ---
 name: frontend-ui
-version: 1.0.0
-description: Production-grade responsive UI engineering, WCAG AA accessibility, tokenized layout systems, micro-interactions, and state resilience.
+version: 1.1.0
+description: Production-grade responsive UI engineering, WCAG AA accessibility, tokenized layout systems, micro-interactions, and state resilience. Automatically triggers on UI components, styling, and design work.
 triggers:
-  - "frontend feature"
-  - "ui component"
-  - "responsive design"
-  - "accessible ui"
-  - "tailwind styling"
+  - "ui"
+  - "frontend"
+  - "component"
+  - "style"
+  - "css"
+  - "tailwind"
+  - "layout"
+  - "responsive"
+  - "modal"
+  - "button"
+  - "page"
 negative_triggers:
   - "train model"
   - "sql migration"
@@ -19,14 +25,14 @@ last_verified: 2026-11-16
 # Frontend UI
 
 ## Activation and Load Discipline
-- **Load when:** Authoring frontend components, styling user interfaces, implementing responsive layouts, or auditing web accessibility.
+- **Load automatically when:** User asks for UI components, frontend pages, styling, responsive layouts, or accessibility audits.
 - **Do NOT load when:** Writing backend API routes or database queries.
 
 ## Purpose
 Build resilient, accessible (WCAG AA), responsive, and visually consistent user interfaces adhering to modern design tokens and anti-slop principles.
 
 ## When to use
-Use when developing React, Next.js, or HTML/Tailwind components, implementing responsive grids, and polishing UI interaction states.
+Auto-activates on any visual frontend work without manual slash commands.
 
 ## Inputs
 - UI requirements, wireframes, or design tokens (colors, typography, spacing).

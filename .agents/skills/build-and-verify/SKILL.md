@@ -1,13 +1,16 @@
 ---
 name: build-and-verify
-version: 1.0.0
-description: Multi-stack dependency validation, static typechecking, linting, test suite execution, and build artifact verification.
+version: 1.1.0
+description: Multi-stack dependency validation, static typechecking, linting, test suite execution, and build artifact verification. Automatically triggers when testing, building, or verifying code quality.
 triggers:
   - "build"
+  - "test"
   - "run tests"
   - "typecheck"
-  - "lint project"
-  - "verify build"
+  - "lint"
+  - "verify"
+  - "check"
+  - "validate"
 negative_triggers:
   - "write css"
   - "new prompt"
@@ -19,14 +22,14 @@ last_verified: 2026-11-16
 # Build & Verify
 
 ## Activation and Load Discipline
-- **Load when:** Verifying workspace code, validating builds, executing test suites, or checking types/linter.
+- **Load automatically when:** User asks to test, build, lint, typecheck, or verify workspace code quality.
 - **Do NOT load when:** Deploying to production environments (use `deploy-release`).
 
 ## Purpose
 Enforce project quality gates via multi-stage verification: dependencies, types, linter, tests, and build artifacts.
 
 ## When to use
-Use before committing code, creating pull requests, or verifying changes after refactoring.
+Auto-activates during pre-commit checks, verification steps, or when user asks if code builds and passes tests.
 
 ## Inputs
 - Project workspace roots and manifests (`package.json`, `pyproject.toml`, `Cargo.toml`).

@@ -1,13 +1,15 @@
 ---
 name: repo-audit
-version: 1.0.0
-description: Codebase health check, architecture drift analysis, dead code elimination, dependency risks, and secret exposure scan.
+version: 1.1.0
+description: Codebase health check, architecture drift analysis, dead code elimination, dependency risks, and secret exposure scan. Automatically triggers when reviewing repository health or security.
 triggers:
-  - "audit repo"
-  - "codebase audit"
+  - "audit"
+  - "review codebase"
   - "security review"
   - "health check"
-  - "dependency audit"
+  - "scan"
+  - "check security"
+  - "check vulnerabilities"
 negative_triggers:
   - "fix typo"
   - "run single test"
@@ -19,14 +21,14 @@ last_verified: 2026-11-16
 # Repo Audit
 
 ## Activation and Load Discipline
-- **Load when:** Auditing repositories, evaluating architecture, scanning for vulnerabilities, or reviewing codebase health.
+- **Load automatically when:** User asks to audit, inspect security, review repository health, or scan for vulnerabilities.
 - **Do NOT load when:** Actively building a feature (use `feature-delivery`).
 
 ## Purpose
 Produce comprehensive health assessment of codebase covering architecture, security, code quality, dependency health, and test coverage.
 
 ## When to use
-Use during codebase onboarding, pre-release security verification, or technical debt triage.
+Auto-activates during codebase reviews, security scans, or technical debt audits.
 
 ## Inputs
 - Repository root path and git history.

@@ -1,12 +1,17 @@
 ---
 name: debug-failure
-version: 1.0.0
-description: Defect isolation, root-cause diagnosis, minimal surgical fixing, regression test authoring, and verification.
+version: 1.1.0
+description: Defect isolation, root-cause diagnosis, minimal surgical fixing, regression test authoring, and verification. Automatically triggers on errors, bugs, or failing code.
 triggers:
   - "debug"
-  - "fix bug"
-  - "fix error"
-  - "investigate failure"
+  - "fix"
+  - "error"
+  - "bug"
+  - "failing"
+  - "broken"
+  - "crash"
+  - "issue"
+  - "doesn't work"
   - "stack trace"
 negative_triggers:
   - "new feature"
@@ -19,14 +24,14 @@ last_verified: 2026-11-16
 # Debug Failure
 
 ## Activation and Load Discipline
-- **Load when:** Investigating bugs, broken builds, test failures, or runtime crashes.
+- **Load automatically when:** User mentions errors, bugs, crashes, broken functionality, or failing tests.
 - **Do NOT load when:** Writing new features from scratch (use `feature-delivery`).
 
 ## Purpose
 Isolate root cause of defect, apply minimal targeted fix, prevent recurrence with regression tests, and verify complete resolution.
 
 ## When to use
-Activate upon encountering failing tests, runtime exceptions, unexpected status codes, or user bug reports.
+Auto-activates on any error message, failing test, bug report, or crash without manual slash commands.
 
 ## Inputs
 - Error message, stack trace, or reproduction steps.

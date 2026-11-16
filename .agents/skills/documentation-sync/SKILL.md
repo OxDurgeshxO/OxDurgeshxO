@@ -1,12 +1,14 @@
 ---
 name: documentation-sync
-version: 1.0.0
-description: Automated synchronization of README, API references, architecture specifications, and changelogs following code changes.
+version: 1.1.0
+description: Automated synchronization of README, API references, architecture specifications, and changelogs following code changes. Automatically triggers when user asks to update docs or after code modifications.
 triggers:
   - "update docs"
-  - "sync documentation"
-  - "document changes"
-  - "update readme"
+  - "readme"
+  - "document"
+  - "changelog"
+  - "sync docs"
+  - "documentation"
 negative_triggers:
   - "write feature code"
   - "run linter"
@@ -18,14 +20,14 @@ last_verified: 2026-11-16
 # Documentation Sync
 
 ## Activation and Load Discipline
-- **Load when:** Syncing documentation, updating READMEs, generating API specs, or updating changelogs.
+- **Load automatically when:** User asks to update docs or README, or automatically chained after functional code changes.
 - **Do NOT load when:** Modifying runtime business logic (use `feature-delivery`).
 
 ## Purpose
 Ensure documentation never drifts from working code by keeping README files, API schemas, and architecture guides synchronized with code changes.
 
 ## When to use
-Use immediately after completing feature implementations, API modifications, or dependency updates.
+Auto-activates after completing feature work or when asked to update documentation.
 
 ## Inputs
 - Git diff or list of modified source files.

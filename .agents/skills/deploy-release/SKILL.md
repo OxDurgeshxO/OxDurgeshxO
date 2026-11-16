@@ -1,12 +1,14 @@
 ---
 name: deploy-release
-version: 1.0.0
-description: Pre-deploy validation, production packaging, zero-downtime deployment execution, post-deploy smoke testing, and rollback.
+version: 1.1.0
+description: Pre-deploy validation, production packaging, zero-downtime deployment execution, post-deploy smoke testing, and rollback. Automatically triggers when user asks to deploy, publish, or release.
 triggers:
   - "deploy"
-  - "release version"
-  - "publish release"
-  - "production deployment"
+  - "release"
+  - "publish"
+  - "ship"
+  - "push to prod"
+  - "production"
 negative_triggers:
   - "local test"
   - "dev build"
@@ -18,14 +20,14 @@ last_verified: 2026-11-16
 # Deploy & Release
 
 ## Activation and Load Discipline
-- **Load when:** Preparing releases, deploying applications, publishing packages, or validating production rollouts.
+- **Load automatically when:** User asks to deploy, release, publish packages, or push to production environments.
 - **Do NOT load when:** Running local tests or dev servers (use `build-and-verify`).
 
 ## Purpose
 Execute reliable, verifiable production deployments with complete pre-flight checks, smoke testing, and deterministic rollback plans.
 
 ## When to use
-Use when releasing new software versions to production platforms (Vercel, Cloudflare, AWS, GitHub Releases, npm).
+Auto-activates on deployment commands across Cloudflare, Vercel, AWS, GitHub Releases, or npm.
 
 ## Inputs
 - Candidate commit SHA or release tag.
