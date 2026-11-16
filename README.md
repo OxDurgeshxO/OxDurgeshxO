@@ -77,12 +77,12 @@
 ### 📊 GitHub Activity & Metrics
 
 <p align="center">
-  <img src="./stats/github-stats.svg" width="48%" alt="Durgesh's GitHub Stats" />
-  <img src="./stats/top-langs.svg" width="48%" alt="Top Languages" />
+  <img src="https://raw.githubusercontent.com/OxDurgeshxO/OxDurgeshxO/main/stats/github-stats.svg" width="48%" alt="Durgesh's GitHub Stats" />
+  <img src="https://raw.githubusercontent.com/OxDurgeshxO/OxDurgeshxO/main/stats/top-langs.svg" width="48%" alt="Top Languages" />
 </p>
 
 <p align="center">
-  <img src="./stats/streak-stats.svg" width="97%" alt="GitHub Streak" />
+  <img src="https://raw.githubusercontent.com/OxDurgeshxO/OxDurgeshxO/main/stats/streak-stats.svg" width="97%" alt="GitHub Streak" />
 </p>
 
 ---
