@@ -9,6 +9,228 @@ const ROOT_DIR = path.resolve(__dirname, '..');
 const GITHUB_USERNAME = 'OxDurgeshxO';
 const README_PATH = path.join(ROOT_DIR, 'README.md');
 const PROJECTS_PATH = path.join(ROOT_DIR, 'data', 'projects.json');
+const STATS_DIR = path.join(ROOT_DIR, 'stats');
+
+async function fetchGraphQL(query) {
+  const token = process.env.GITHUB_TOKEN;
+  const headers = {
+    'User-Agent': 'Profile-Sync-Agent',
+    'Content-Type': 'application/json',
+  };
+  if (token) {
+    headers.Authorization = `Bearer ${token}`;
+  }
+
+  const res = await fetch('https://api.github.com/graphql', {
+    method: 'POST',
+    headers,
+    body: JSON.stringify({ query }),
+  });
+
+  if (!res.ok) {
+    throw new Error(`GraphQL request failed: HTTP ${res.status}`);
+  }
+
+  const json = await res.json();
+  if (json.errors) {
+    throw new Error(`GraphQL Error: ${JSON.stringify(json.errors)}`);
+  }
+  return json.data;
+}
+
+function generateStatsSvg({ totalStars, totalCommits, totalPRs, totalIssues, contributedTo }) {
+  return `<svg width="495" height="195" viewBox="0 0 495 195" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .title { font: 700 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Ubuntu, sans-serif; fill: #70a5fd; }
+    .label { font: 400 14px -apple-system, BlinkMacSystemFont, 'Segoe UI', Ubuntu, sans-serif; fill: #a9b1d6; }
+    .stat { font: 700 14px -apple-system, BlinkMacSystemFont, 'Segoe UI', Ubuntu, sans-serif; fill: #38bdf8; }
+    .icon { fill: #bb9af7; }
+  </style>
+  <rect x="0.5" y="0.5" rx="10" height="99%" width="494" fill="#1a1b27" stroke="#24283b" stroke-width="1"/>
+  <g transform="translate(25, 35)">
+    <text x="0" y="0" class="title">OxDurgeshxO's GitHub Stats</text>
+  </g>
+  <g transform="translate(25, 70)">
+    <!-- Stars -->
+    <g transform="translate(0, 0)">
+      <circle cx="6" cy="6" r="5" fill="#e0af68"/>
+      <text x="25" y="10" class="label">Total Stars Earned:</text>
+      <text x="320" y="10" class="stat">${totalStars}</text>
+    </g>
+    <!-- Commits -->
+    <g transform="translate(0, 25)">
+      <circle cx="6" cy="6" r="5" fill="#7aa2f7"/>
+      <text x="25" y="10" class="label">Total Commits (Active):</text>
+      <text x="320" y="10" class="stat">${totalCommits}</text>
+    </g>
+    <!-- PRs -->
+    <g transform="translate(0, 50)">
+      <circle cx="6" cy="6" r="5" fill="#bb9af7"/>
+      <text x="25" y="10" class="label">Total PRs:</text>
+      <text x="320" y="10" class="stat">${totalPRs}</text>
+    </g>
+    <!-- Issues -->
+    <g transform="translate(0, 75)">
+      <circle cx="6" cy="6" r="5" fill="#7dcfff"/>
+      <text x="25" y="10" class="label">Total Issues:</text>
+      <text x="320" y="10" class="stat">${totalIssues}</text>
+    </g>
+    <!-- Contributed to -->
+    <g transform="translate(0, 100)">
+      <circle cx="6" cy="6" r="5" fill="#9ece6a"/>
+      <text x="25" y="10" class="label">Contributed to (Repos):</text>
+      <text x="320" y="10" class="stat">${contributedTo}</text>
+    </g>
+  </g>
+</svg>`;
+}
+
+function generateTopLangsSvg(languages) {
+  const totalSize = languages.reduce((acc, l) => acc + l.size, 0) || 1;
+  const topLangs = languages.slice(0, 5).map(l => ({
+    ...l,
+    percentage: ((l.size / totalSize) * 100).toFixed(1),
+  }));
+
+  let barX = 0;
+  const progressBars = topLangs.map(l => {
+    const width = ((l.size / totalSize) * 440).toFixed(1);
+    const rect = `<rect x="${barX}" y="0" width="${width}" height="10" fill="${l.color || '#858585'}" rx="2"/>`;
+    barX += parseFloat(width);
+    return rect;
+  }).join('');
+
+  const langListLeft = topLangs.slice(0, 3).map((l, i) => `
+    <g transform="translate(0, ${i * 24})">
+      <circle cx="6" cy="6" r="5" fill="${l.color || '#858585'}"/>
+      <text x="22" y="10" class="label">${l.name}</text>
+      <text x="160" y="10" class="stat">${l.percentage}%</text>
+    </g>
+  `).join('');
+
+  const langListRight = topLangs.slice(3, 5).map((l, i) => `
+    <g transform="translate(220, ${i * 24})">
+      <circle cx="6" cy="6" r="5" fill="${l.color || '#858585'}"/>
+      <text x="22" y="10" class="label">${l.name}</text>
+      <text x="160" y="10" class="stat">${l.percentage}%</text>
+    </g>
+  `).join('');
+
+  return `<svg width="495" height="195" viewBox="0 0 495 195" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .title { font: 700 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Ubuntu, sans-serif; fill: #70a5fd; }
+    .label { font: 400 13px -apple-system, BlinkMacSystemFont, 'Segoe UI', Ubuntu, sans-serif; fill: #a9b1d6; }
+    .stat { font: 700 13px -apple-system, BlinkMacSystemFont, 'Segoe UI', Ubuntu, sans-serif; fill: #38bdf8; }
+  </style>
+  <rect x="0.5" y="0.5" rx="10" height="99%" width="494" fill="#1a1b27" stroke="#24283b" stroke-width="1"/>
+  <g transform="translate(25, 35)">
+    <text x="0" y="0" class="title">Most Used Languages</text>
+  </g>
+  <g transform="translate(25, 55)">
+    <rect x="0" y="0" width="440" height="10" rx="5" fill="#24283b"/>
+    <g>${progressBars}</g>
+  </g>
+  <g transform="translate(25, 85)">
+    ${langListLeft}
+    ${langListRight}
+  </g>
+</svg>`;
+}
+
+async function updateGeneratedStats() {
+  if (!fs.existsSync(STATS_DIR)) {
+    fs.mkdirSync(STATS_DIR, { recursive: true });
+  }
+
+  try {
+    const query = `
+      query {
+        user(login: "${GITHUB_USERNAME}") {
+          contributionsCollection {
+            totalCommitContributions
+            restrictedContributionsCount
+          }
+          repositoriesContributedTo(first: 1) {
+            totalCount
+          }
+          pullRequests {
+            totalCount
+          }
+          issues {
+            totalCount
+          }
+          repositories(first: 100, ownerAffiliations: OWNER) {
+            nodes {
+              stargazerCount
+              languages(first: 5, orderBy: {field: SIZE, direction: DESC}) {
+                edges {
+                  size
+                  node {
+                    name
+                    color
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    `;
+
+    const data = await fetchGraphQL(query);
+    const user = data.user;
+
+    let totalStars = 0;
+    const langMap = new Map();
+
+    for (const repo of user.repositories.nodes) {
+      totalStars += repo.stargazerCount || 0;
+      if (repo.languages?.edges) {
+        for (const edge of repo.languages.edges) {
+          const name = edge.node.name;
+          const color = edge.node.color;
+          const size = edge.size;
+          if (langMap.has(name)) {
+            langMap.get(name).size += size;
+          } else {
+            langMap.set(name, { name, color, size });
+          }
+        }
+      }
+    }
+
+    const sortedLanguages = Array.from(langMap.values()).sort((a, b) => b.size - a.size);
+
+    const statsData = {
+      totalStars,
+      totalCommits: user.contributionsCollection.totalCommitContributions,
+      totalPRs: user.pullRequests.totalCount,
+      totalIssues: user.issues.totalCount,
+      contributedTo: user.repositoriesContributedTo.totalCount,
+    };
+
+    const statsSvg = generateStatsSvg(statsData);
+    const langsSvg = generateTopLangsSvg(sortedLanguages);
+
+    fs.writeFileSync(path.join(STATS_DIR, 'github-stats.svg'), statsSvg, 'utf8');
+    fs.writeFileSync(path.join(STATS_DIR, 'top-langs.svg'), langsSvg, 'utf8');
+    console.log('Native SVG stats cards generated successfully in stats/');
+  } catch (err) {
+    console.warn('Could not generate native SVGs via GraphQL:', err.message);
+  }
+
+  // Also fetch live streak stats backup
+  try {
+    const streakRes = await fetch(`https://streak-stats.demolab.com/?user=${GITHUB_USERNAME}&theme=tokyonight&hide_border=true`);
+    if (streakRes.ok) {
+      const streakSvg = await streakRes.text();
+      fs.writeFileSync(path.join(STATS_DIR, 'streak-stats.svg'), streakSvg, 'utf8');
+      console.log('Streak stats SVG mirrored successfully.');
+    }
+  } catch (err) {
+    console.warn('Could not mirror streak stats:', err.message);
+  }
+}
 
 async function getRecentActivity() {
   try {
@@ -102,6 +324,9 @@ async function main() {
   }
 
   let content = fs.readFileSync(README_PATH, 'utf8');
+
+  console.log('Generating Native SVG Stats Cards...');
+  await updateGeneratedStats();
 
   console.log('Rendering Crown Jewel Projects Table from data/projects.json...');
   const tableContent = await renderProjectsTable();

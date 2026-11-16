@@ -77,12 +77,12 @@
 ### 📊 GitHub Activity & Metrics
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=OxDurgeshxO&show_icons=true&theme=tokyonight&hide_border=true&count_private=true" width="48%" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=OxDurgeshxO&layout=compact&theme=tokyonight&hide_border=true" width="48%" />
+  <img src="./stats/github-stats.svg" width="48%" alt="Durgesh's GitHub Stats" />
+  <img src="./stats/top-langs.svg" width="48%" alt="Top Languages" />
 </p>
 
 <p align="center">
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=OxDurgeshxO&theme=tokyonight&hide_border=true" width="97%" />
+  <img src="./stats/streak-stats.svg" width="97%" alt="GitHub Streak" />
 </p>
 
 ---
