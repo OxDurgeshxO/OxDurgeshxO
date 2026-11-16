@@ -14,13 +14,13 @@
     <g transform="translate(0, 0)">
       <circle cx="6" cy="6" r="5" fill="#e0af68"/>
       <text x="25" y="10" class="label">Total Stars Earned:</text>
-      <text x="320" y="10" class="stat">2</text>
+      <text x="320" y="10" class="stat">5</text>
     </g>
     <!-- Commits -->
     <g transform="translate(0, 25)">
       <circle cx="6" cy="6" r="5" fill="#7aa2f7"/>
       <text x="25" y="10" class="label">Total Commits (Active):</text>
-      <text x="320" y="10" class="stat">327</text>
+      <text x="320" y="10" class="stat">375</text>
     </g>
     <!-- PRs -->
     <g transform="translate(0, 50)">
@@ -32,7 +32,7 @@
     <g transform="translate(0, 75)">
       <circle cx="6" cy="6" r="5" fill="#7dcfff"/>
       <text x="25" y="10" class="label">Total Issues:</text>
-      <text x="320" y="10" class="stat">0</text>
+      <text x="320" y="10" class="stat">1</text>
     </g>
     <!-- Contributed to -->
     <g transform="translate(0, 100)">

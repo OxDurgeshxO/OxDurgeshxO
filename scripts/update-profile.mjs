@@ -295,7 +295,13 @@ async function renderProjectsTable() {
   table += '| :--- | :--- | :--- | :--- | :--- |\n';
 
   for (const p of projects) {
-    const link = `[**${p.name}**](https://github.com/${p.repo})`;
+    let link = `[**${p.name}**](https://github.com/${p.repo})`;
+    if (p.demo) {
+      link += `<br/>[🔗 *Live Demo*](${p.demo})`;
+    }
+    if (p.npm) {
+      link += `<br/>[📦 *npm*](https://www.npmjs.com/package/${p.npm})`;
+    }
     const ciBadge = p.ciWorkflow
       ? `[![CI](https://github.com/${p.repo}/actions/workflows/${p.ciWorkflow}/badge.svg)](https://github.com/${p.repo}/actions)`
       : `[![Repo](https://img.shields.io/badge/Status-Active-brightgreen)](https://github.com/${p.repo})`;

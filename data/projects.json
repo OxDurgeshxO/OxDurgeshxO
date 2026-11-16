@@ -2,6 +2,7 @@
   {
     "name": "durgesh-flagship-portfolio",
     "repo": "OxDurgeshxO/durgesh-flagship-portfolio",
+    "demo": "https://durgesh-portfolio.pages.dev",
     "domain": "3D Interactive Web / Personal Brand",
     "stack": "Next.js, Three.js, WebGPU WGSL, BVH",
     "highlights": "WebGPU compute shader particle physics engine with WebGL2 fallback, BVH spatial raycast tree, decoupled dynamic client islands, 0-error quality gate.",
@@ -10,6 +11,7 @@
   {
     "name": "mini-redis",
     "repo": "OxDurgeshxO/mini-redis",
+    "npm": "@oxdurgesh/mini-redis",
     "domain": "Systems Programming / In-Memory Store",
     "stack": "TypeScript, TCP Sockets, RESP2/3, AOF WAL",
     "highlights": "Wire-compatible in-memory database with RESP3 Maps/Sets, Append-Only File persistence engine with `BGREWRITEAOF`, Node SEA native binaries, 44k+ req/sec.",
@@ -18,6 +20,7 @@
   {
     "name": "fitness-platform-architecture",
     "repo": "OxDurgeshxO/fitness-platform-architecture",
+    "npm": "@oxdurgesh/pose-fsm",
     "domain": "Pose AI Engine & Biomechanics",
     "stack": "TypeScript, 3D Kinematics, MediaPipe FSM",
     "highlights": "Headless `@oxdurgesh/pose-fsm` package, 3D Euclidean joint vector kinematics, knee valgus collapse detection, lumbar shear moment proxy, hysteresis FSM.",
@@ -26,6 +29,7 @@
   {
     "name": "jarvis-realtime-assistant",
     "repo": "OxDurgeshxO/jarvis-realtime-assistant",
+    "demo": "https://oxdurgeshxo.github.io/jarvis-realtime-assistant/",
     "domain": "Realtime Multimodal AI / Voice Agent",
     "stack": "FastAPI, Gemini 2.0 Live, WebSockets, AudioWorklet",
     "highlights": "Zero-allocation 24kHz linear PCM circular ring buffer processor, client-side VAD energy detection, reactive Iron Man HUD telemetry, automated CI.",
@@ -34,6 +38,7 @@
   {
     "name": "jugaadlang",
     "repo": "OxDurgeshxO/jugaadlang",
+    "demo": "https://jugaadlang.netlify.app/",
     "domain": "Compilers / Programming Language",
     "stack": "Python, Pratt Parser, WebAssembly, GitHub Pages",
     "highlights": "Hindi-keyword programming language with AST interpreter, automated binary builder, and live in-browser Web REPL playground.",
@@ -42,6 +47,7 @@
   {
     "name": "RoleRadar",
     "repo": "OxDurgeshxO/RoleRadar",
+    "demo": "https://rolefit-2.vercel.app",
     "domain": "Career Intelligence & ATS Resume Engine",
     "stack": "Next.js, TypeScript, Vector DB, Drizzle ORM",
     "highlights": "In-memory dense vector store with exact cosine similarity search, topological skill prerequisite DAG engine, PDF/DOCX parsing, CodeQL SAST.",
@@ -50,6 +56,7 @@
   {
     "name": "trendsprout",
     "repo": "OxDurgeshxO/trendsprout",
+    "demo": "https://trendsprout.vercel.app",
     "domain": "AI Media Automation / Content Studio",
     "stack": "React 19, TanStack Start, Tailwind v4, Vite",
     "highlights": "AI TikTok content generator, storyboards, automated audio/script pipelines, CodeQL SAST, Vitest suite.",
@@ -58,6 +65,7 @@
   {
     "name": "skillverse-3d",
     "repo": "OxDurgeshxO/skillverse-3d",
+    "demo": "https://skillverse-3d.pages.dev",
     "domain": "3D Spatial Visualization / Tech Navigator",
     "stack": "Three.js, WebGL, Vite, Cloudflare Pages",
     "highlights": "Interactive 3D spatial tech stack navigator, custom camera physics, CodeQL static analysis.",
@@ -66,6 +74,7 @@
   {
     "name": "MarketMatch-AI",
     "repo": "OxDurgeshxO/MarketMatch-AI",
+    "demo": "https://oxdurgeshxo-marketmatch-ai-app-y8ysbm.streamlit.app/",
     "domain": "Retail Customer Analytics / Unsupervised ML",
     "stack": "Streamlit, Scikit-Learn, Plotly, Pandas",
     "highlights": "RFM segmentation, K-Means & DBSCAN clustering, Silhouette validation, Nearest Neighbors recommendation.",
@@ -74,6 +83,7 @@
   {
     "name": "bank-churn-prediction-studio",
     "repo": "OxDurgeshxO/bank-churn-prediction-studio",
+    "demo": "https://bank-churn-prediction-studio-mrl8whyxpnhkyfvfwmtqwq.streamlit.app/",
     "domain": "Financial Risk Classification / Explainable ML",
     "stack": "Streamlit, XGBoost, SHAP, SMOTE",
     "highlights": "Imbalanced data handling with SMOTE, ROC-AUC metric optimization, SHAP tree explainability, fintech dashboard.",
@@ -82,6 +92,7 @@
   {
     "name": "CNN-STREAMLIT",
     "repo": "OxDurgeshxO/CNN-STREAMLIT",
+    "demo": "https://cnn-app-dmfd7b76fxyrnvrhzpkgay.streamlit.app/",
     "domain": "Deep Learning / Computer Vision Studio",
     "stack": "PyTorch, Streamlit, Plotly, NumPy",
     "highlights": "Fashion-MNIST deep convolutional network (89.3% accuracy), real-time interactive canvas inference.",
