@@ -35,6 +35,7 @@
 
 ### 🚀 Crown Jewel Engineering Projects
 
+<!-- PROJECTS_TABLE:START -->
 | Project | Domain | Stack | Highlights & Architecture | Version & CI |
 | :--- | :--- | :--- | :--- | :--- |
 | [**durgesh-flagship-portfolio**](https://github.com/OxDurgeshxO/durgesh-flagship-portfolio) | 3D Interactive Web / Personal Brand | Next.js, Three.js, WebGPU WGSL, BVH | WebGPU compute shader particle physics engine with WebGL2 fallback, BVH spatial raycast tree, decoupled dynamic client islands, 0-error quality gate. | [![CI](https://github.com/OxDurgeshxO/durgesh-flagship-portfolio/actions/workflows/portfolio-quality.yml/badge.svg)](https://github.com/OxDurgeshxO/durgesh-flagship-portfolio/actions) |
@@ -48,6 +49,19 @@
 | [**MarketMatch-AI**](https://github.com/OxDurgeshxO/MarketMatch-AI) | Retail Customer Analytics / Unsupervised ML | Streamlit, Scikit-Learn, Plotly, Pandas | RFM segmentation, K-Means & DBSCAN clustering, Silhouette validation, Nearest Neighbors recommendation. | [![CI](https://github.com/OxDurgeshxO/MarketMatch-AI/actions/workflows/ci.yml/badge.svg)](https://github.com/OxDurgeshxO/MarketMatch-AI/actions) |
 | [**bank-churn-prediction-studio**](https://github.com/OxDurgeshxO/bank-churn-prediction-studio) | Financial Risk Classification / Explainable ML | Streamlit, XGBoost, SHAP, SMOTE | Imbalanced data handling with SMOTE, ROC-AUC metric optimization, SHAP tree explainability, fintech dashboard. | [![CI](https://github.com/OxDurgeshxO/bank-churn-prediction-studio/actions/workflows/ci.yml/badge.svg)](https://github.com/OxDurgeshxO/bank-churn-prediction-studio/actions) |
 | [**CNN-STREAMLIT**](https://github.com/OxDurgeshxO/CNN-STREAMLIT) | Deep Learning / Computer Vision Studio | PyTorch, Streamlit, Plotly, NumPy | Fashion-MNIST deep convolutional network (89.3% accuracy), real-time interactive canvas inference. | [![CI](https://github.com/OxDurgeshxO/CNN-STREAMLIT/actions/workflows/ci.yml/badge.svg)](https://github.com/OxDurgeshxO/CNN-STREAMLIT/actions) |
+<!-- PROJECTS_TABLE:END -->
+
+---
+
+### ⚡ Recent Public Activity
+
+<!-- ACTIVITY:START -->
+- 🚀 **2026-11-15** &mdash; Pushed to [`OxDurgeshxO/mini-redis`](https://github.com/OxDurgeshxO/mini-redis): *Code update*
+- 🚀 **2026-11-15** &mdash; Pushed to [`OxDurgeshxO/mini-redis`](https://github.com/OxDurgeshxO/mini-redis): *Code update*
+- 🚀 **2026-11-15** &mdash; Pushed to [`OxDurgeshxO/fitness-platform-architecture`](https://github.com/OxDurgeshxO/fitness-platform-architecture): *Code update*
+- 🚀 **2026-11-15** &mdash; Pushed to [`OxDurgeshxO/mini-redis`](https://github.com/OxDurgeshxO/mini-redis): *Code update*
+- 🚀 **2026-11-15** &mdash; Pushed to [`OxDurgeshxO/mini-redis`](https://github.com/OxDurgeshxO/mini-redis): *Code update*
+<!-- ACTIVITY:END -->
 
 ---
 
