@@ -42,11 +42,11 @@
 ### ⚡ Recent Public Activity
 
 <!-- ACTIVITY:START -->
-- ⭐ **2026-11-18** &mdash; Starred [`ripienaar/free-for-dev`](https://github.com/ripienaar/free-for-dev)
-- 🚀 **2026-11-15** &mdash; Pushed to [`OxDurgeshxO/fitness-platform-architecture`](https://github.com/OxDurgeshxO/fitness-platform-architecture): *Code improvements*
-- 🚀 **2026-11-15** &mdash; Pushed to [`OxDurgeshxO/jugaadlang`](https://github.com/OxDurgeshxO/jugaadlang): *Code improvements*
-- 🚀 **2026-11-15** &mdash; Pushed to [`OxDurgeshxO/jarvis-realtime-assistant`](https://github.com/OxDurgeshxO/jarvis-realtime-assistant): *Code improvements*
-- 🚀 **2026-11-15** &mdash; Pushed to [`OxDurgeshxO/trendsprout`](https://github.com/OxDurgeshxO/trendsprout): *Code improvements*
+- ⭐ **2026-11-19** &mdash; Starred [`microsoft/markitdown`](https://github.com/microsoft/markitdown)
+- ⭐ **2026-11-19** &mdash; Starred [`OWASP/CheatSheetSeries`](https://github.com/OWASP/CheatSheetSeries)
+- ⭐ **2026-11-18** &mdash; Starred [`cheaper-inference/OmniRoute`](https://github.com/cheaper-inference/OmniRoute)
+- ⭐ **2026-11-18** &mdash; Starred [`tashfeenahmed/freellmapi`](https://github.com/tashfeenahmed/freellmapi)
+- ⭐ **2026-11-18** &mdash; Starred [`rebelytics/one-skill-to-rule-them-all`](https://github.com/rebelytics/one-skill-to-rule-them-all)
 <!-- ACTIVITY:END -->
 
 ---
