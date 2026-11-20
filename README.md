@@ -42,11 +42,11 @@
 ### ⚡ Recent Public Activity
 
 <!-- ACTIVITY:START -->
+- ⭐ **2026-11-19** &mdash; Starred [`multica-ai/andrej-karpathy-skills`](https://github.com/multica-ai/andrej-karpathy-skills)
+- ⭐ **2026-11-19** &mdash; Starred [`gitleaks/gitleaks`](https://github.com/gitleaks/gitleaks)
+- ⭐ **2026-11-19** &mdash; Starred [`GoogleChrome/lighthouse`](https://github.com/GoogleChrome/lighthouse)
+- ⭐ **2026-11-19** &mdash; Starred [`mcollina/autocannon`](https://github.com/mcollina/autocannon)
 - ⭐ **2026-11-19** &mdash; Starred [`microsoft/markitdown`](https://github.com/microsoft/markitdown)
-- ⭐ **2026-11-19** &mdash; Starred [`OWASP/CheatSheetSeries`](https://github.com/OWASP/CheatSheetSeries)
-- ⭐ **2026-11-18** &mdash; Starred [`cheaper-inference/OmniRoute`](https://github.com/cheaper-inference/OmniRoute)
-- ⭐ **2026-11-18** &mdash; Starred [`tashfeenahmed/freellmapi`](https://github.com/tashfeenahmed/freellmapi)
-- ⭐ **2026-11-18** &mdash; Starred [`rebelytics/one-skill-to-rule-them-all`](https://github.com/rebelytics/one-skill-to-rule-them-all)
 <!-- ACTIVITY:END -->
 
 ---
