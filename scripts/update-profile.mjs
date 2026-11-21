@@ -429,6 +429,11 @@ async function getRecentActivity() {
       const date = new Date(e.created_at).toISOString().split('T')[0];
       const key = `${e.type}:${repoName}`;
 
+      // Skip profile README self-commits to highlight substantive project work
+      if (e.type === 'PushEvent' && repoName.toLowerCase() === `${GITHUB_USERNAME}/${GITHUB_USERNAME}`.toLowerCase()) {
+        continue;
+      }
+
       if (e.type === 'PushEvent') {
         const msg = e.payload?.commits?.[0]?.message?.split('\n')[0] || 'Code improvements';
         const commitKey = `${key}:${msg}`;

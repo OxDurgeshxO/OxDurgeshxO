@@ -8,7 +8,7 @@
   <a href="https://durgesh-portfolio.pages.dev"><img src="https://img.shields.io/badge/Portfolio-durgesh--portfolio.pages.dev-0ea5e9?style=flat-square&logo=three.js&logoColor=white" alt="Portfolio" /></a>
   <a href="https://linkedin.com/in/durgesh-dutt-sinha"><img src="https://img.shields.io/badge/LinkedIn-Connect-0077b5?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
   <a href="https://github.com/OxDurgeshxO"><img src="https://img.shields.io/badge/GitHub-OxDurgeshxO-181717?style=flat-square&logo=github&logoColor=white" alt="GitHub" /></a>
-  <a href="https://durgesh-portfolio.pages.dev"><img src="https://img.shields.io/badge/Resume-View_CV-10b981?style=flat-square&logo=read-the-docs&logoColor=white" alt="Resume" /></a>
+  <a href="https://durgesh-portfolio.pages.dev/resume.pdf"><img src="https://img.shields.io/badge/Resume-View_CV-10b981?style=flat-square&logo=read-the-docs&logoColor=white" alt="Resume" /></a>
 </p>
 
 ---
@@ -50,10 +50,10 @@
 ### 📚 Technical Architecture & Deep-Dives
 
 <!-- ARTICLES:START -->
-- 📝 **[Building Wire-Compatible In-Memory Database from Scratch: RESP3, Sockets & Node SEA](https://github.com/OxDurgeshxO/mini-redis#architecture)** &mdash; `Systems Programming / Database Internals`
-- 📝 **[Zero-Allocation Audio Streaming: 24kHz Linear PCM Circular Ring Buffers with Gemini Live](https://github.com/OxDurgeshxO/jarvis-realtime-assistant#architecture)** &mdash; `Realtime AI / Web Audio API`
-- 📝 **[In-Browser Biomechanics: 3D Euclidean Joint Kinematics & Hysteresis State Machines](https://github.com/OxDurgeshxO/fitness-platform-architecture#biomechanics-fsm)** &mdash; `Pose AI / 3D Kinematics`
-- 📝 **[WebGPU Compute Shaders vs WebGL2: Particle Physics & BVH Spatial Partitioning in Three.js](https://github.com/OxDurgeshxO/durgesh-flagship-portfolio#graphics-architecture)** &mdash; `Interactive 3D / WebGPU WGSL`
+- 📝 **[Building Wire-Compatible In-Memory Database from Scratch: RESP3, Sockets & Node SEA](https://github.com/OxDurgeshxO/mini-redis/blob/main/docs/ARCHITECTURE.md)** &mdash; `Systems Programming / Database Internals`
+- 📝 **[Zero-Allocation Audio Streaming: 24kHz Linear PCM Circular Ring Buffers with Gemini Live](https://github.com/OxDurgeshxO/jarvis-realtime-assistant/blob/main/docs/CASE_STUDY_GEMINI_LIVE.md)** &mdash; `Realtime AI / Web Audio API`
+- 📝 **[In-Browser Biomechanics: 3D Euclidean Joint Kinematics & Hysteresis State Machines](https://github.com/OxDurgeshxO/fitness-platform-architecture#2-real-time-computer-vision-pose-estimation-pipeline)** &mdash; `Pose AI / 3D Kinematics`
+- 📝 **[WebGPU Compute Shaders vs WebGL2: Particle Physics & BVH Spatial Partitioning in Three.js](https://github.com/OxDurgeshxO/durgesh-flagship-portfolio/blob/main/docs/CASE_STUDY_3D_CYBERBOT.md)** &mdash; `Interactive 3D / WebGPU WGSL`
 <!-- ARTICLES:END -->
 
 ---
@@ -62,11 +62,11 @@
 
 <!-- NOTE: Recent activity below is auto-generated via GitHub Events API. -->
 <!-- ACTIVITY:START -->
-- 🚀 **2026-11-21** &mdash; Pushed to [`OxDurgeshxO/OxDurgeshxO`](https://github.com/OxDurgeshxO/OxDurgeshxO): *Code improvements*
 - ⭐ **2026-11-20** &mdash; Starred [`deepseek-ai/deepseek-harness`](https://github.com/deepseek-ai/deepseek-harness)
 - ⭐ **2026-11-19** &mdash; Starred [`multica-ai/andrej-karpathy-skills`](https://github.com/multica-ai/andrej-karpathy-skills)
 - ⭐ **2026-11-19** &mdash; Starred [`gitleaks/gitleaks`](https://github.com/gitleaks/gitleaks)
 - ⭐ **2026-11-19** &mdash; Starred [`GoogleChrome/lighthouse`](https://github.com/GoogleChrome/lighthouse)
+- ⭐ **2026-11-19** &mdash; Starred [`mcollina/autocannon`](https://github.com/mcollina/autocannon)
 <!-- ACTIVITY:END -->
 
 ---
@@ -99,6 +99,6 @@
 
 <!-- LAST_UPDATED:START -->
 <p align="center">
-  <sub>⚡ Last synchronized: <b>2026-11-21 14:00 UTC</b></sub>
+  <sub>⚡ Last synchronized: <b>2026-11-21 14:15 UTC</b></sub>
 </p>
 <!-- LAST_UPDATED:END -->

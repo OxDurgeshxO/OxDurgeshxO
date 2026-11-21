@@ -2,25 +2,25 @@
   {
     "title": "Building Wire-Compatible In-Memory Database from Scratch: RESP3, Sockets & Node SEA",
     "topic": "Systems Programming / Database Internals",
-    "url": "https://github.com/OxDurgeshxO/mini-redis#architecture",
+    "url": "https://github.com/OxDurgeshxO/mini-redis/blob/main/docs/ARCHITECTURE.md",
     "date": "2026-11"
   },
   {
     "title": "Zero-Allocation Audio Streaming: 24kHz Linear PCM Circular Ring Buffers with Gemini Live",
     "topic": "Realtime AI / Web Audio API",
-    "url": "https://github.com/OxDurgeshxO/jarvis-realtime-assistant#architecture",
+    "url": "https://github.com/OxDurgeshxO/jarvis-realtime-assistant/blob/main/docs/CASE_STUDY_GEMINI_LIVE.md",
     "date": "2026-11"
   },
   {
     "title": "In-Browser Biomechanics: 3D Euclidean Joint Kinematics & Hysteresis State Machines",
     "topic": "Pose AI / 3D Kinematics",
-    "url": "https://github.com/OxDurgeshxO/fitness-platform-architecture#biomechanics-fsm",
+    "url": "https://github.com/OxDurgeshxO/fitness-platform-architecture#2-real-time-computer-vision-pose-estimation-pipeline",
     "date": "2026-11"
   },
   {
     "title": "WebGPU Compute Shaders vs WebGL2: Particle Physics & BVH Spatial Partitioning in Three.js",
     "topic": "Interactive 3D / WebGPU WGSL",
-    "url": "https://github.com/OxDurgeshxO/durgesh-flagship-portfolio#graphics-architecture",
+    "url": "https://github.com/OxDurgeshxO/durgesh-flagship-portfolio/blob/main/docs/CASE_STUDY_3D_CYBERBOT.md",
     "date": "2026-11"
   }
 ]
