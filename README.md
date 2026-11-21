@@ -8,6 +8,12 @@
   <a href="https://durgesh-portfolio.pages.dev"><img src="https://img.shields.io/badge/Flagship_Portfolio-3D_Interactive-0ea5e9?style=for-the-badge&logo=three.js&logoColor=white" alt="Portfolio" /></a>
   <a href="https://linkedin.com/in/durgesh-dutt-sinha"><img src="https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
   <a href="https://github.com/OxDurgeshxO"><img src="https://img.shields.io/badge/GitHub-OxDurgeshxO-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" /></a>
+  <a href="https://durgesh-portfolio.pages.dev"><img src="https://img.shields.io/badge/Resume%2FCV-View_Portfolio-10b981?style=for-the-badge&logo=googledocs&logoColor=white" alt="Resume" /></a>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Status-Open_to_AIML_%26_Systems_Roles-38bdf8?style=flat-square" alt="Status" />
+  <img src="https://img.shields.io/badge/Location-India_%2F_Remote-a855f7?style=flat-square" alt="Location" />
 </p>
 
 <p align="center">
@@ -29,6 +35,13 @@
 | [**mini-redis**](https://github.com/OxDurgeshxO/mini-redis)<br/>[📦 *npm*](https://www.npmjs.com/package/@oxdurgesh/mini-redis) | Systems Programming / In-Memory Store | TypeScript, TCP Sockets, RESP2/3, AOF WAL | Wire-compatible in-memory database with RESP3 Maps/Sets, Append-Only File persistence engine with `BGREWRITEAOF`, Node SEA native binaries, 44k+ req/sec. | [![CI](https://github.com/OxDurgeshxO/mini-redis/actions/workflows/ci.yml/badge.svg)](https://github.com/OxDurgeshxO/mini-redis/actions) |
 | [**fitness-platform-architecture**](https://github.com/OxDurgeshxO/fitness-platform-architecture)<br/>[📦 *npm*](https://www.npmjs.com/package/@oxdurgesh/pose-fsm) | Pose AI Engine & Biomechanics | TypeScript, 3D Kinematics, MediaPipe FSM | Headless `@oxdurgesh/pose-fsm` package, 3D Euclidean joint vector kinematics, knee valgus collapse detection, lumbar shear moment proxy, hysteresis FSM. | [![CI](https://github.com/OxDurgeshxO/fitness-platform-architecture/actions/workflows/ci.yml/badge.svg)](https://github.com/OxDurgeshxO/fitness-platform-architecture/actions) |
 | [**jarvis-realtime-assistant**](https://github.com/OxDurgeshxO/jarvis-realtime-assistant)<br/>[🔗 *Live Demo*](https://oxdurgeshxo.github.io/jarvis-realtime-assistant/) | Realtime Multimodal AI / Voice Agent | FastAPI, Gemini 2.0 Live, WebSockets, AudioWorklet | Zero-allocation 24kHz linear PCM circular ring buffer processor, client-side VAD energy detection, reactive Iron Man HUD telemetry, automated CI. | [![CI](https://github.com/OxDurgeshxO/jarvis-realtime-assistant/actions/workflows/deploy.yml/badge.svg)](https://github.com/OxDurgeshxO/jarvis-realtime-assistant/actions) |
+
+<details>
+<summary><b>📂 View 7 More Engineering Projects (Compilers, ML & 3D Tools)</b></summary>
+<br/>
+
+| Project | Domain | Stack | Highlights & Architecture | Version & CI |
+| :--- | :--- | :--- | :--- | :--- |
 | [**jugaadlang**](https://github.com/OxDurgeshxO/jugaadlang)<br/>[🔗 *Live Demo*](https://jugaadlang.netlify.app/) | Compilers / Programming Language | Python, Pratt Parser, WebAssembly, GitHub Pages | Hindi-keyword programming language with AST interpreter, automated binary builder, and live in-browser Web REPL playground. | [![CI](https://github.com/OxDurgeshxO/jugaadlang/actions/workflows/ci.yml/badge.svg)](https://github.com/OxDurgeshxO/jugaadlang/actions) |
 | [**RoleRadar**](https://github.com/OxDurgeshxO/RoleRadar)<br/>[🔗 *Live Demo*](https://rolefit-2.vercel.app) | Career Intelligence & ATS Resume Engine | Next.js, TypeScript, Vector DB, Drizzle ORM | In-memory dense vector store with exact cosine similarity search, topological skill prerequisite DAG engine, PDF/DOCX parsing, CodeQL SAST. | [![CI](https://github.com/OxDurgeshxO/RoleRadar/actions/workflows/codeql.yml/badge.svg)](https://github.com/OxDurgeshxO/RoleRadar/actions) |
 | [**trendsprout**](https://github.com/OxDurgeshxO/trendsprout)<br/>[🔗 *Live Demo*](https://trendsprout.vercel.app) | AI Media Automation / Content Studio | React 19, TanStack Start, Tailwind v4, Vite | AI TikTok content generator, storyboards, automated audio/script pipelines, CodeQL SAST, Vitest suite. | [![CI](https://github.com/OxDurgeshxO/trendsprout/actions/workflows/deploy.yml/badge.svg)](https://github.com/OxDurgeshxO/trendsprout/actions) |
@@ -36,6 +49,8 @@
 | [**MarketMatch-AI**](https://github.com/OxDurgeshxO/MarketMatch-AI)<br/>[🔗 *Live Demo*](https://oxdurgeshxo-marketmatch-ai-app-y8ysbm.streamlit.app/) | Retail Customer Analytics / Unsupervised ML | Streamlit, Scikit-Learn, Plotly, Pandas | RFM segmentation, K-Means & DBSCAN clustering, Silhouette validation, Nearest Neighbors recommendation. | [![CI](https://github.com/OxDurgeshxO/MarketMatch-AI/actions/workflows/ci.yml/badge.svg)](https://github.com/OxDurgeshxO/MarketMatch-AI/actions) |
 | [**bank-churn-prediction-studio**](https://github.com/OxDurgeshxO/bank-churn-prediction-studio)<br/>[🔗 *Live Demo*](https://bank-churn-prediction-studio-mrl8whyxpnhkyfvfwmtqwq.streamlit.app/) | Financial Risk Classification / Explainable ML | Streamlit, XGBoost, SHAP, SMOTE | Imbalanced data handling with SMOTE, ROC-AUC metric optimization, SHAP tree explainability, fintech dashboard. | [![CI](https://github.com/OxDurgeshxO/bank-churn-prediction-studio/actions/workflows/ci.yml/badge.svg)](https://github.com/OxDurgeshxO/bank-churn-prediction-studio/actions) |
 | [**CNN-STREAMLIT**](https://github.com/OxDurgeshxO/CNN-STREAMLIT)<br/>[🔗 *Live Demo*](https://cnn-app-dmfd7b76fxyrnvrhzpkgay.streamlit.app/) | Deep Learning / Computer Vision Studio | PyTorch, Streamlit, Plotly, NumPy | Fashion-MNIST deep convolutional network (89.3% accuracy), real-time interactive canvas inference. | [![CI](https://github.com/OxDurgeshxO/CNN-STREAMLIT/actions/workflows/ci.yml/badge.svg)](https://github.com/OxDurgeshxO/CNN-STREAMLIT/actions) |
+
+</details>
 <!-- PROJECTS_TABLE:END -->
 
 ---
@@ -82,6 +97,6 @@
 
 <!-- LAST_UPDATED:START -->
 <p align="center">
-  <sub>⚡ Last synchronized: <b>2026-11-21 13:13 UTC</b></sub>
+  <sub>⚡ Last synchronized: <b>2026-11-21 13:26 UTC</b></sub>
 </p>
 <!-- LAST_UPDATED:END -->

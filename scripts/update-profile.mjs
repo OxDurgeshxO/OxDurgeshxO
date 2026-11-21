@@ -137,6 +137,97 @@ function generateTopLangsSvg(languages) {
 </svg>`;
 }
 
+function calculateStreaks(days) {
+  let total = 0;
+  let currentStreak = 0;
+  let longestStreak = 0;
+  let tempStreak = 0;
+  let currentStreakStart = null;
+  let currentStreakEnd = null;
+
+  const today = new Date().toISOString().split('T')[0];
+  const sortedDays = [...days].sort((a, b) => a.date.localeCompare(b.date));
+
+  for (const day of sortedDays) {
+    total += day.contributionCount;
+    if (day.contributionCount > 0) {
+      tempStreak++;
+      if (tempStreak > longestStreak) {
+        longestStreak = tempStreak;
+      }
+    } else {
+      tempStreak = 0;
+    }
+  }
+
+  // Calculate current streak backwards from today/yesterday
+  let idx = sortedDays.length - 1;
+  // If today has 0 contributions, check if yesterday was active
+  if (idx >= 0 && sortedDays[idx].contributionCount === 0 && sortedDays[idx].date === today) {
+    idx--;
+  }
+
+  const streakDays = [];
+  while (idx >= 0 && sortedDays[idx].contributionCount > 0) {
+    streakDays.unshift(sortedDays[idx]);
+    idx--;
+  }
+
+  currentStreak = streakDays.length;
+  if (currentStreak > 0) {
+    currentStreakStart = streakDays[0].date;
+    currentStreakEnd = streakDays[streakDays.length - 1].date;
+  }
+
+  return { total, currentStreak, longestStreak, currentStreakStart, currentStreakEnd };
+}
+
+function generateNativeStreakSvg({ total, currentStreak, longestStreak, currentStreakStart, currentStreakEnd }) {
+  const formatDate = d => {
+    if (!d) return 'Present';
+    const parts = d.split('-');
+    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    return `${months[parseInt(parts[1], 10) - 1]} ${parseInt(parts[2], 10)}`;
+  };
+
+  const streakRange = currentStreak > 0 ? `${formatDate(currentStreakStart)} - ${formatDate(currentStreakEnd)}` : 'Inactive';
+
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 495 195" width="495px" height="195px">
+  <style>
+    .title { font: 700 14px -apple-system, BlinkMacSystemFont, 'Segoe UI', Ubuntu, sans-serif; fill: #70A5FD; }
+    .label { font: 400 12px -apple-system, BlinkMacSystemFont, 'Segoe UI', Ubuntu, sans-serif; fill: #38BDAE; }
+    .num { font: 700 28px -apple-system, BlinkMacSystemFont, 'Segoe UI', Ubuntu, sans-serif; fill: #70A5FD; }
+    .curr { font: 700 28px -apple-system, BlinkMacSystemFont, 'Segoe UI', Ubuntu, sans-serif; fill: #BF91F3; }
+    .curr-label { font: 700 14px -apple-system, BlinkMacSystemFont, 'Segoe UI', Ubuntu, sans-serif; fill: #BF91F3; }
+  </style>
+  <rect x="0.5" y="0.5" rx="8" height="194" width="494" fill="#1A1B27" stroke="#24283b" stroke-width="1"/>
+  <line x1="165" y1="28" x2="165" y2="170" stroke="#24283b" stroke-width="1"/>
+  <line x1="330" y1="28" x2="330" y2="170" stroke="#24283b" stroke-width="1"/>
+
+  <!-- Total Contributions -->
+  <g transform="translate(82.5, 48)">
+    <text x="0" y="32" text-anchor="middle" class="num">${total}</text>
+    <text x="0" y="65" text-anchor="middle" class="title">Total Contributions</text>
+    <text x="0" y="90" text-anchor="middle" class="label">Past Year</text>
+  </g>
+
+  <!-- Current Streak -->
+  <g transform="translate(247.5, 48)">
+    <circle cx="0" cy="22" r="38" fill="none" stroke="#70A5FD" stroke-width="4"/>
+    <text x="0" y="32" text-anchor="middle" class="curr">${currentStreak}</text>
+    <text x="0" y="80" text-anchor="middle" class="curr-label">Current Streak</text>
+    <text x="0" y="102" text-anchor="middle" class="label">${streakRange}</text>
+  </g>
+
+  <!-- Longest Streak -->
+  <g transform="translate(412.5, 48)">
+    <text x="0" y="32" text-anchor="middle" class="num">${longestStreak}</text>
+    <text x="0" y="65" text-anchor="middle" class="title">Longest Streak</text>
+    <text x="0" y="90" text-anchor="middle" class="label">${longestStreak} Days Max</text>
+  </g>
+</svg>`;
+}
+
 async function updateGeneratedStats() {
   if (!fs.existsSync(STATS_DIR)) {
     fs.mkdirSync(STATS_DIR, { recursive: true });
@@ -156,6 +247,15 @@ async function updateGeneratedStats() {
             contributionsCollection {
               totalCommitContributions
               restrictedContributionsCount
+              contributionCalendar {
+                totalContributions
+                weeks {
+                  contributionDays {
+                    contributionCount
+                    date
+                  }
+                }
+              }
             }
             repositoriesContributedTo(first: 1) {
               totalCount
@@ -222,26 +322,62 @@ async function updateGeneratedStats() {
       fs.writeFileSync(ghStatsPath, statsSvg, 'utf8');
       fs.writeFileSync(topLangsPath, langsSvg, 'utf8');
       console.log('Native SVG stats cards generated successfully in stats/');
+
+      // Process native streak stats if calendar is present
+      const calendar = user.contributionsCollection?.contributionCalendar;
+      if (calendar?.weeks) {
+        const days = [];
+        for (const week of calendar.weeks) {
+          if (week.contributionDays) {
+            days.push(...week.contributionDays);
+          }
+        }
+        const streakMetrics = calculateStreaks(days);
+        const streakSvg = generateNativeStreakSvg(streakMetrics);
+        fs.writeFileSync(streakPath, streakSvg, 'utf8');
+        console.log('Native streak stats SVG generated successfully in stats/');
+      }
     } catch (err) {
       console.warn('Could not generate native SVGs via GraphQL:', err.message);
     }
   }
 
-  // Also fetch live streak stats backup
-  try {
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 6000);
-    const streakRes = await fetch(`https://streak-stats.demolab.com/?user=${GITHUB_USERNAME}&theme=tokyonight&hide_border=true`, {
-      signal: controller.signal,
-    });
-    clearTimeout(timeout);
-    if (streakRes.ok) {
-      const streakSvg = await streakRes.text();
-      fs.writeFileSync(streakPath, streakSvg, 'utf8');
-      console.log('Streak stats SVG mirrored successfully.');
+  // Fallback mirror for streak stats if native file not written or failed
+  if (!fs.existsSync(streakPath)) {
+    try {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 6000);
+      const streakRes = await fetch(`https://streak-stats.demolab.com/?user=${GITHUB_USERNAME}&theme=tokyonight&hide_border=true`, {
+        signal: controller.signal,
+      });
+      clearTimeout(timeout);
+      if (streakRes.ok) {
+        const streakSvg = await streakRes.text();
+        fs.writeFileSync(streakPath, streakSvg, 'utf8');
+        console.log('Streak stats SVG mirrored successfully from backup.');
+      }
+    } catch (err) {
+      console.warn('Could not mirror streak stats fallback:', err.message);
     }
-  } catch (err) {
-    console.warn('Could not mirror streak stats:', err.message);
+  }
+}
+
+async function pingLiveDemos(projects) {
+  console.log('Checking live demos to prevent free cloud sleep...');
+  for (const p of projects) {
+    if (!p.demo) continue;
+    try {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 8000);
+      const res = await fetch(p.demo, {
+        headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) DemoKeepalive/1.0' },
+        signal: controller.signal,
+      });
+      clearTimeout(timeout);
+      console.log(`  ✓ [HTTP ${res.status}] ${p.name}`);
+    } catch (err) {
+      console.warn(`  ⚠ [PING WARN] ${p.name}: ${err.message}`);
+    }
   }
 }
 
@@ -322,31 +458,8 @@ async function getRecentActivity() {
   }
 }
 
-async function renderProjectsTable() {
-  if (!fs.existsSync(PROJECTS_PATH)) {
-    throw new Error(`Projects file not found at ${PROJECTS_PATH}`);
-  }
-
-  const raw = fs.readFileSync(PROJECTS_PATH, 'utf8');
-  const projects = JSON.parse(raw);
-
-  if (!Array.isArray(projects)) {
-    throw new Error('data/projects.json must contain a JSON array of projects.');
-  }
-
-  const requiredFields = ['name', 'repo', 'domain', 'stack', 'highlights'];
-  for (const [index, p] of projects.entries()) {
-    for (const field of requiredFields) {
-      if (!p[field]) {
-        throw new Error(`Project at index ${index} (${p.name || 'unnamed'}) is missing required field: '${field}'`);
-      }
-    }
-  }
-
-  let table = '| Project | Domain | Stack | Highlights & Architecture | Version & CI |\n';
-  table += '| :--- | :--- | :--- | :--- | :--- |\n';
-
-  for (const p of projects) {
+async function renderProjectsTable(projects) {
+  const formatRow = p => {
     let link = `[**${p.name}**](https://github.com/${p.repo})`;
     if (p.demo) {
       link += `<br/>[🔗 *Live Demo*](${p.demo})`;
@@ -358,10 +471,23 @@ async function renderProjectsTable() {
       ? `[![CI](https://github.com/${p.repo}/actions/workflows/${p.ciWorkflow}/badge.svg)](https://github.com/${p.repo}/actions)`
       : `[![Repo](https://img.shields.io/badge/Status-Active-brightgreen)](https://github.com/${p.repo})`;
 
-    table += `| ${link} | ${p.domain} | ${p.stack} | ${p.highlights} | ${ciBadge} |\n`;
+    return `| ${link} | ${p.domain} | ${p.stack} | ${p.highlights} | ${ciBadge} |`;
+  };
+
+  const header = '| Project | Domain | Stack | Highlights & Architecture | Version & CI |\n| :--- | :--- | :--- | :--- | :--- |';
+
+  const featured = projects.filter(p => p.featured);
+  const others = projects.filter(p => !p.featured);
+
+  let output = `${header}\n${featured.map(formatRow).join('\n')}\n\n`;
+
+  if (others.length > 0) {
+    output += `<details>\n<summary><b>📂 View ${others.length} More Engineering Projects (Compilers, ML & 3D Tools)</b></summary>\n<br/>\n\n`;
+    output += `${header}\n${others.map(formatRow).join('\n')}\n\n`;
+    output += `</details>`;
   }
 
-  return table.trim();
+  return output.trim();
 }
 
 function renderLastUpdated() {
@@ -391,14 +517,36 @@ async function main() {
   if (!fs.existsSync(README_PATH)) {
     throw new Error(`README file not found at ${README_PATH}`);
   }
+  if (!fs.existsSync(PROJECTS_PATH)) {
+    throw new Error(`Projects file not found at ${PROJECTS_PATH}`);
+  }
+
+  const raw = fs.readFileSync(PROJECTS_PATH, 'utf8');
+  const projects = JSON.parse(raw);
+
+  if (!Array.isArray(projects)) {
+    throw new Error('data/projects.json must contain a JSON array of projects.');
+  }
+
+  const requiredFields = ['name', 'repo', 'domain', 'stack', 'highlights'];
+  for (const [index, p] of projects.entries()) {
+    for (const field of requiredFields) {
+      if (!p[field]) {
+        throw new Error(`Project at index ${index} (${p.name || 'unnamed'}) is missing required field: '${field}'`);
+      }
+    }
+  }
 
   let content = fs.readFileSync(README_PATH, 'utf8');
 
   console.log('Generating Native SVG Stats Cards...');
   await updateGeneratedStats();
 
+  console.log('Pinging live demos to keep free instances awake...');
+  await pingLiveDemos(projects);
+
   console.log('Rendering Crown Jewel Projects Table from data/projects.json...');
-  const tableContent = await renderProjectsTable();
+  const tableContent = await renderProjectsTable(projects);
   content = replaceSlot(content, 'PROJECTS_TABLE', tableContent);
 
   console.log('Fetching live public activity for', GITHUB_USERNAME);
