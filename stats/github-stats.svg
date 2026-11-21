@@ -20,7 +20,7 @@
     <g transform="translate(0, 25)">
       <circle cx="6" cy="6" r="5" fill="#7aa2f7"/>
       <text x="25" y="10" class="label">Total Commits (Active):</text>
-      <text x="320" y="10" class="stat">351</text>
+      <text x="320" y="10" class="stat">353</text>
     </g>
     <!-- PRs -->
     <g transform="translate(0, 50)">
