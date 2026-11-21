@@ -247,14 +247,18 @@ async function updateGeneratedStats() {
 
 async function getRecentActivity() {
   try {
-    const headers = { 'User-Agent': 'Profile-Sync-Agent' };
+    const headers = {
+      'User-Agent': 'Profile-Sync-Agent',
+      'Cache-Control': 'no-cache, no-store, must-revalidate',
+      'Pragma': 'no-cache',
+    };
     if (process.env.GITHUB_TOKEN) {
       headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
     }
 
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 6000);
-    const res = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/events/public?per_page=25`, {
+    const res = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/events/public?per_page=30`, {
       headers,
       signal: controller.signal,
     });
@@ -270,7 +274,7 @@ async function getRecentActivity() {
     const formatted = [];
 
     for (const e of events) {
-      if (formatted.length >= 5) break;
+      if (formatted.length >= 6) break;
 
       const repoName = e.repo.name;
       const date = new Date(e.created_at).toISOString().split('T')[0];
@@ -282,6 +286,14 @@ async function getRecentActivity() {
         if (seen.has(commitKey)) continue;
         seen.add(commitKey);
         formatted.push(`- 🚀 **${date}** &mdash; Pushed to [\`${repoName}\`](https://github.com/${repoName}): *${msg}*`);
+      } else if (e.type === 'PullRequestEvent') {
+        const action = e.payload?.action || 'interacted with';
+        const prNumber = e.payload?.pull_request?.number ? `#${e.payload.pull_request.number}` : 'PR';
+        const prTitle = e.payload?.pull_request?.title || '';
+        const prKey = `${key}:${prNumber}:${action}`;
+        if (seen.has(prKey)) continue;
+        seen.add(prKey);
+        formatted.push(`- 🔀 **${date}** &mdash; ${action.charAt(0).toUpperCase() + action.slice(1)} PR [\`${prNumber} ${prTitle}\`](https://github.com/${repoName}/pulls) on [\`${repoName}\`](https://github.com/${repoName})`);
       } else if (e.type === 'ReleaseEvent') {
         const tag = e.payload?.release?.tag_name || 'new release';
         if (seen.has(key)) continue;
@@ -291,6 +303,11 @@ async function getRecentActivity() {
         if (seen.has(key)) continue;
         seen.add(key);
         formatted.push(`- ✨ **${date}** &mdash; Created repository [\`${repoName}\`](https://github.com/${repoName})`);
+      } else if (e.type === 'ForkEvent') {
+        const forkee = e.payload?.forkee?.full_name || repoName;
+        if (seen.has(key)) continue;
+        seen.add(key);
+        formatted.push(`- 🍴 **${date}** &mdash; Forked [\`${repoName}\`](https://github.com/${repoName}) to [\`${forkee}\`](https://github.com/${forkee})`);
       } else if (e.type === 'WatchEvent' && e.payload?.action === 'started') {
         if (seen.has(key)) continue;
         seen.add(key);
@@ -298,7 +315,7 @@ async function getRecentActivity() {
       }
     }
 
-    return formatted.length > 0 ? formatted.join('\n') : '_No recent commits found._';
+    return formatted.length > 0 ? formatted.join('\n') : '_No recent activity found._';
   } catch (err) {
     console.error('Error fetching activity:', err.message);
     return '_Activity stream temporarily unavailable._';
@@ -347,6 +364,17 @@ async function renderProjectsTable() {
   return table.trim();
 }
 
+function renderLastUpdated() {
+  const now = new Date();
+  const year = now.getUTCFullYear();
+  const month = String(now.getUTCMonth() + 1).padStart(2, '0');
+  const day = String(now.getUTCDate()).padStart(2, '0');
+  const hours = String(now.getUTCHours()).padStart(2, '0');
+  const minutes = String(now.getUTCMinutes()).padStart(2, '0');
+  const timestamp = `${year}-${month}-${day} ${hours}:${minutes} UTC`;
+  return `<p align="center">\n  <sub>⚡ Last synchronized: <b>${timestamp}</b></sub>\n</p>`;
+}
+
 function replaceSlot(content, slotName, newContent) {
   const regex = new RegExp(`<!-- ${slotName}:START -->[\\s\\S]*?<!-- ${slotName}:END -->`);
   if (!regex.test(content)) {
@@ -376,6 +404,10 @@ async function main() {
   console.log('Fetching live public activity for', GITHUB_USERNAME);
   const activityContent = await getRecentActivity();
   content = replaceSlot(content, 'ACTIVITY', activityContent);
+
+  console.log('Rendering last synchronized timestamp...');
+  const lastUpdatedContent = renderLastUpdated();
+  content = replaceSlot(content, 'LAST_UPDATED', lastUpdatedContent);
 
   fs.writeFileSync(README_PATH, content, 'utf8');
   console.log('Successfully synchronized README.md.');

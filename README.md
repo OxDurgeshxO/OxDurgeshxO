@@ -49,6 +49,7 @@
 - ⭐ **2026-11-19** &mdash; Starred [`gitleaks/gitleaks`](https://github.com/gitleaks/gitleaks)
 - ⭐ **2026-11-19** &mdash; Starred [`GoogleChrome/lighthouse`](https://github.com/GoogleChrome/lighthouse)
 - ⭐ **2026-11-19** &mdash; Starred [`mcollina/autocannon`](https://github.com/mcollina/autocannon)
+- ⭐ **2026-11-19** &mdash; Starred [`microsoft/markitdown`](https://github.com/microsoft/markitdown)
 <!-- ACTIVITY:END -->
 
 ---
@@ -78,3 +79,9 @@
 <p align="center">
   <sub>Engineered with precision by <b>Durgesh Dutt Sinha</b>. Open to impactful roles in AIML Engineering & Systems Architecture.</sub>
 </p>
+
+<!-- LAST_UPDATED:START -->
+<p align="center">
+  <sub>⚡ Last synchronized: <b>2026-11-21 13:07 UTC</b></sub>
+</p>
+<!-- LAST_UPDATED:END -->
