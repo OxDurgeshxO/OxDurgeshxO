@@ -10,6 +10,7 @@ const GITHUB_USERNAME = 'OxDurgeshxO';
 const README_PATH = path.join(ROOT_DIR, 'README.md');
 const PROJECTS_PATH = path.join(ROOT_DIR, 'data', 'projects.json');
 const ARTICLES_PATH = path.join(ROOT_DIR, 'data', 'articles.json');
+const STATUS_PATH = path.join(ROOT_DIR, 'data', 'status.json');
 const STATS_DIR = path.join(ROOT_DIR, 'stats');
 
 async function fetchGraphQL(query) {
@@ -378,6 +379,21 @@ async function pingLiveDemos(projects) {
   }
 }
 
+function renderFocusStatus() {
+  if (!fs.existsSync(STATUS_PATH)) {
+    return '> 🔭 **Currently Building:** [**durgesh-flagship-portfolio**](https://github.com/OxDurgeshxO/durgesh-flagship-portfolio) &mdash; *Architecting Next.js 3D WebGPU particle physics compute engine*';
+  }
+
+  try {
+    const raw = fs.readFileSync(STATUS_PATH, 'utf8');
+    const status = JSON.parse(raw);
+    return `> 🔭 **Currently Building:** [**${status.project}**](${status.url}) &mdash; *${status.focus}*`;
+  } catch (err) {
+    console.warn('Could not parse status.json:', err.message);
+    return '> 🔭 **Currently Building:** [**durgesh-flagship-portfolio**](https://github.com/OxDurgeshxO/durgesh-flagship-portfolio) &mdash; *Architecting Next.js 3D WebGPU particle physics compute engine*';
+  }
+}
+
 async function getRecentActivity() {
   try {
     const headers = {
@@ -464,7 +480,6 @@ async function renderProjectsTable(projects) {
       link += `<br/>[📦 *${p.package}*](https://github.com/${p.repo})`;
     }
 
-    // Always use official verified GitHub Actions CI badge (zero npm 404 invalid badge)
     const badge = p.ciWorkflow
       ? `[![CI](https://github.com/${p.repo}/actions/workflows/${p.ciWorkflow}/badge.svg)](https://github.com/${p.repo}/actions)`
       : `[![Repo](https://img.shields.io/badge/Status-Active-brightgreen?style=flat-square)](https://github.com/${p.repo})`;
@@ -562,6 +577,10 @@ async function main() {
 
   console.log('Pinging live demos to keep free instances awake...');
   await pingLiveDemos(projects);
+
+  console.log('Rendering Active Engineering Focus...');
+  const focusContent = renderFocusStatus();
+  content = replaceSlot(content, 'FOCUS', focusContent);
 
   console.log('Rendering Crown Jewel Projects Table from data/projects.json...');
   const tableContent = await renderProjectsTable(projects);

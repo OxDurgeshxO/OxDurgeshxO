@@ -9,7 +9,7 @@ on:
     branches:
       - main
     paths:
-      - 'data/projects.json'
+      - 'data/**'
       - 'scripts/**'
       - '.github/workflows/update-profile.yml'
 
@@ -35,6 +35,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: node scripts/update-profile.mjs
+
+      - name: Run Quality Gate Tests
+        run: npm test
 
       - name: Pull Remote Changes (Prevent Race Conditions)
         run: |

@@ -13,6 +13,10 @@
 
 ---
 
+<!-- FOCUS:START -->
+> 🔭 **Currently Building:** [**durgesh-flagship-portfolio**](https://github.com/OxDurgeshxO/durgesh-flagship-portfolio) &mdash; *Architecting Next.js 3D WebGPU particle physics compute engine & spatial BVH tree*
+<!-- FOCUS:END -->
+
 ### 🚀 Crown Jewel Engineering Projects
 
 <!-- NOTE: The projects table below is auto-generated from data/projects.json. Do NOT edit directly. Edit data/projects.json instead. -->
@@ -37,7 +41,6 @@
 | [**MarketMatch-AI**](https://github.com/OxDurgeshxO/MarketMatch-AI)<br/>[🔗 *Live Demo*](https://oxdurgeshxo-marketmatch-ai-app-y8ysbm.streamlit.app/) | Retail Customer Analytics / Unsupervised ML | Streamlit, Scikit-Learn, Plotly, Pandas | RFM segmentation, K-Means & DBSCAN clustering, Silhouette validation, Nearest Neighbors recommendation. | [![CI](https://github.com/OxDurgeshxO/MarketMatch-AI/actions/workflows/ci.yml/badge.svg)](https://github.com/OxDurgeshxO/MarketMatch-AI/actions) |
 | [**bank-churn-prediction-studio**](https://github.com/OxDurgeshxO/bank-churn-prediction-studio)<br/>[🔗 *Live Demo*](https://bank-churn-prediction-studio-mrl8whyxpnhkyfvfwmtqwq.streamlit.app/) | Financial Risk Classification / Explainable ML | Streamlit, XGBoost, SHAP, SMOTE | Imbalanced data handling with SMOTE, ROC-AUC metric optimization, SHAP tree explainability, fintech dashboard. | [![CI](https://github.com/OxDurgeshxO/bank-churn-prediction-studio/actions/workflows/ci.yml/badge.svg)](https://github.com/OxDurgeshxO/bank-churn-prediction-studio/actions) |
 | [**CNN-STREAMLIT**](https://github.com/OxDurgeshxO/CNN-STREAMLIT)<br/>[🔗 *Live Demo*](https://cnn-app-dmfd7b76fxyrnvrhzpkgay.streamlit.app/) | Deep Learning / Computer Vision Studio | PyTorch, Streamlit, Plotly, NumPy | Fashion-MNIST deep convolutional network (89.3% accuracy), real-time interactive canvas inference. | [![CI](https://github.com/OxDurgeshxO/CNN-STREAMLIT/actions/workflows/ci.yml/badge.svg)](https://github.com/OxDurgeshxO/CNN-STREAMLIT/actions) |
-
 </details>
 <!-- PROJECTS_TABLE:END -->
 
@@ -95,6 +98,6 @@
 
 <!-- LAST_UPDATED:START -->
 <p align="center">
-  <sub>⚡ Last synchronized: <b>2026-11-21 13:50 UTC</b></sub>
+  <sub>⚡ Last synchronized: <b>2026-11-21 13:48 UTC</b></sub>
 </p>
 <!-- LAST_UPDATED:END -->
