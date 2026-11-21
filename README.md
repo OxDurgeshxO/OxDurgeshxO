@@ -21,6 +21,7 @@
 
 ### 🚀 Crown Jewel Engineering Projects
 
+<!-- NOTE: The projects table below is auto-generated from data/projects.json. Do NOT edit directly. Edit data/projects.json instead. -->
 <!-- PROJECTS_TABLE:START -->
 | Project | Domain | Stack | Highlights & Architecture | Version & CI |
 | :--- | :--- | :--- | :--- | :--- |
@@ -41,6 +42,7 @@
 
 ### ⚡ Recent Public Activity
 
+<!-- NOTE: Recent activity below is auto-generated via GitHub Events API. -->
 <!-- ACTIVITY:START -->
 - ⭐ **2026-11-20** &mdash; Starred [`deepseek-ai/deepseek-harness`](https://github.com/deepseek-ai/deepseek-harness)
 - ⭐ **2026-11-19** &mdash; Starred [`multica-ai/andrej-karpathy-skills`](https://github.com/multica-ai/andrej-karpathy-skills)

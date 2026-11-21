@@ -1,0 +1,11 @@
+{
+  "name": "oxdurgeshxo-profile",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Durgesh Dutt Sinha GitHub Profile README sync engine",
+  "scripts": {
+    "sync": "node --env-file-if-exists=.env scripts/update-profile.mjs",
+    "validate": "node --input-type=module -e \"import fs from 'node:fs'; const p = JSON.parse(fs.readFileSync('data/projects.json', 'utf8')); console.log('✓ Validated ' + p.length + ' projects in data/projects.json');\""
+  }
+}

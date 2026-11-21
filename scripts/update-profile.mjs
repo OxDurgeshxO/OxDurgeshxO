@@ -142,89 +142,102 @@ async function updateGeneratedStats() {
     fs.mkdirSync(STATS_DIR, { recursive: true });
   }
 
-  try {
-    const query = `
-      query {
-        user(login: "${GITHUB_USERNAME}") {
-          contributionsCollection {
-            totalCommitContributions
-            restrictedContributionsCount
-          }
-          repositoriesContributedTo(first: 1) {
-            totalCount
-          }
-          pullRequests {
-            totalCount
-          }
-          issues {
-            totalCount
-          }
-          repositories(first: 100, ownerAffiliations: OWNER) {
-            nodes {
-              stargazerCount
-              languages(first: 5, orderBy: {field: SIZE, direction: DESC}) {
-                edges {
-                  size
-                  node {
-                    name
-                    color
+  const ghStatsPath = path.join(STATS_DIR, 'github-stats.svg');
+  const topLangsPath = path.join(STATS_DIR, 'top-langs.svg');
+  const streakPath = path.join(STATS_DIR, 'streak-stats.svg');
+
+  if (!process.env.GITHUB_TOKEN) {
+    console.warn('Notice: GITHUB_TOKEN not provided in environment. Skipping GraphQL SVG generation; existing SVGs preserved.');
+  } else {
+    try {
+      const query = `
+        query {
+          user(login: "${GITHUB_USERNAME}") {
+            contributionsCollection {
+              totalCommitContributions
+              restrictedContributionsCount
+            }
+            repositoriesContributedTo(first: 1) {
+              totalCount
+            }
+            pullRequests {
+              totalCount
+            }
+            issues {
+              totalCount
+            }
+            repositories(first: 100, ownerAffiliations: OWNER) {
+              nodes {
+                stargazerCount
+                languages(first: 5, orderBy: {field: SIZE, direction: DESC}) {
+                  edges {
+                    size
+                    node {
+                      name
+                      color
+                    }
                   }
                 }
               }
             }
           }
         }
-      }
-    `;
+      `;
 
-    const data = await fetchGraphQL(query);
-    const user = data.user;
+      const data = await fetchGraphQL(query);
+      const user = data.user;
 
-    let totalStars = 0;
-    const langMap = new Map();
+      let totalStars = 0;
+      const langMap = new Map();
 
-    for (const repo of user.repositories.nodes) {
-      totalStars += repo.stargazerCount || 0;
-      if (repo.languages?.edges) {
-        for (const edge of repo.languages.edges) {
-          const name = edge.node.name;
-          const color = edge.node.color;
-          const size = edge.size;
-          if (langMap.has(name)) {
-            langMap.get(name).size += size;
-          } else {
-            langMap.set(name, { name, color, size });
+      for (const repo of user.repositories.nodes) {
+        totalStars += repo.stargazerCount || 0;
+        if (repo.languages?.edges) {
+          for (const edge of repo.languages.edges) {
+            const name = edge.node.name;
+            const color = edge.node.color;
+            const size = edge.size;
+            if (langMap.has(name)) {
+              langMap.get(name).size += size;
+            } else {
+              langMap.set(name, { name, color, size });
+            }
           }
         }
       }
+
+      const sortedLanguages = Array.from(langMap.values()).sort((a, b) => b.size - a.size);
+
+      const statsData = {
+        totalStars,
+        totalCommits: user.contributionsCollection.totalCommitContributions,
+        totalPRs: user.pullRequests.totalCount,
+        totalIssues: user.issues.totalCount,
+        contributedTo: user.repositoriesContributedTo.totalCount,
+      };
+
+      const statsSvg = generateStatsSvg(statsData);
+      const langsSvg = generateTopLangsSvg(sortedLanguages);
+
+      fs.writeFileSync(ghStatsPath, statsSvg, 'utf8');
+      fs.writeFileSync(topLangsPath, langsSvg, 'utf8');
+      console.log('Native SVG stats cards generated successfully in stats/');
+    } catch (err) {
+      console.warn('Could not generate native SVGs via GraphQL:', err.message);
     }
-
-    const sortedLanguages = Array.from(langMap.values()).sort((a, b) => b.size - a.size);
-
-    const statsData = {
-      totalStars,
-      totalCommits: user.contributionsCollection.totalCommitContributions,
-      totalPRs: user.pullRequests.totalCount,
-      totalIssues: user.issues.totalCount,
-      contributedTo: user.repositoriesContributedTo.totalCount,
-    };
-
-    const statsSvg = generateStatsSvg(statsData);
-    const langsSvg = generateTopLangsSvg(sortedLanguages);
-
-    fs.writeFileSync(path.join(STATS_DIR, 'github-stats.svg'), statsSvg, 'utf8');
-    fs.writeFileSync(path.join(STATS_DIR, 'top-langs.svg'), langsSvg, 'utf8');
-    console.log('Native SVG stats cards generated successfully in stats/');
-  } catch (err) {
-    console.warn('Could not generate native SVGs via GraphQL:', err.message);
   }
 
   // Also fetch live streak stats backup
   try {
-    const streakRes = await fetch(`https://streak-stats.demolab.com/?user=${GITHUB_USERNAME}&theme=tokyonight&hide_border=true`);
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 6000);
+    const streakRes = await fetch(`https://streak-stats.demolab.com/?user=${GITHUB_USERNAME}&theme=tokyonight&hide_border=true`, {
+      signal: controller.signal,
+    });
+    clearTimeout(timeout);
     if (streakRes.ok) {
       const streakSvg = await streakRes.text();
-      fs.writeFileSync(path.join(STATS_DIR, 'streak-stats.svg'), streakSvg, 'utf8');
+      fs.writeFileSync(streakPath, streakSvg, 'utf8');
       console.log('Streak stats SVG mirrored successfully.');
     }
   } catch (err) {
@@ -239,7 +252,14 @@ async function getRecentActivity() {
       headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
     }
 
-    const res = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/events/public?per_page=25`, { headers });
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 6000);
+    const res = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/events/public?per_page=25`, {
+      headers,
+      signal: controller.signal,
+    });
+    clearTimeout(timeout);
+
     if (!res.ok) {
       console.warn(`GitHub events API responded with HTTP ${res.status}`);
       return '_Live activity stream updating via cron._';
@@ -290,7 +310,22 @@ async function renderProjectsTable() {
     throw new Error(`Projects file not found at ${PROJECTS_PATH}`);
   }
 
-  const projects = JSON.parse(fs.readFileSync(PROJECTS_PATH, 'utf8'));
+  const raw = fs.readFileSync(PROJECTS_PATH, 'utf8');
+  const projects = JSON.parse(raw);
+
+  if (!Array.isArray(projects)) {
+    throw new Error('data/projects.json must contain a JSON array of projects.');
+  }
+
+  const requiredFields = ['name', 'repo', 'domain', 'stack', 'highlights'];
+  for (const [index, p] of projects.entries()) {
+    for (const field of requiredFields) {
+      if (!p[field]) {
+        throw new Error(`Project at index ${index} (${p.name || 'unnamed'}) is missing required field: '${field}'`);
+      }
+    }
+  }
+
   let table = '| Project | Domain | Stack | Highlights & Architecture | Version & CI |\n';
   table += '| :--- | :--- | :--- | :--- | :--- |\n';
 
