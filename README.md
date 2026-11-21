@@ -42,11 +42,11 @@
 ### ⚡ Recent Public Activity
 
 <!-- ACTIVITY:START -->
+- ⭐ **2026-11-20** &mdash; Starred [`deepseek-ai/deepseek-harness`](https://github.com/deepseek-ai/deepseek-harness)
 - ⭐ **2026-11-19** &mdash; Starred [`multica-ai/andrej-karpathy-skills`](https://github.com/multica-ai/andrej-karpathy-skills)
 - ⭐ **2026-11-19** &mdash; Starred [`gitleaks/gitleaks`](https://github.com/gitleaks/gitleaks)
 - ⭐ **2026-11-19** &mdash; Starred [`GoogleChrome/lighthouse`](https://github.com/GoogleChrome/lighthouse)
 - ⭐ **2026-11-19** &mdash; Starred [`mcollina/autocannon`](https://github.com/mcollina/autocannon)
-- ⭐ **2026-11-19** &mdash; Starred [`microsoft/markitdown`](https://github.com/microsoft/markitdown)
 <!-- ACTIVITY:END -->
 
 ---
