@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Building Wire-Compatible In-Memory Database from Scratch: RESP3, Sockets & Node SEA",
+    "topic": "Systems Programming / Database Internals",
+    "url": "https://github.com/OxDurgeshxO/mini-redis#architecture",
+    "date": "2026-11"
+  },
+  {
+    "title": "Zero-Allocation Audio Streaming: 24kHz Linear PCM Circular Ring Buffers with Gemini Live",
+    "topic": "Realtime AI / Web Audio API",
+    "url": "https://github.com/OxDurgeshxO/jarvis-realtime-assistant#architecture",
+    "date": "2026-11"
+  },
+  {
+    "title": "In-Browser Biomechanics: 3D Euclidean Joint Kinematics & Hysteresis State Machines",
+    "topic": "Pose AI / 3D Kinematics",
+    "url": "https://github.com/OxDurgeshxO/fitness-platform-architecture#biomechanics-fsm",
+    "date": "2026-11"
+  },
+  {
+    "title": "WebGPU Compute Shaders vs WebGL2: Particle Physics & BVH Spatial Partitioning in Three.js",
+    "topic": "Interactive 3D / WebGPU WGSL",
+    "url": "https://github.com/OxDurgeshxO/durgesh-flagship-portfolio#graphics-architecture",
+    "date": "2026-11"
+  }
+]

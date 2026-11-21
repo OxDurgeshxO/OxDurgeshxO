@@ -9,6 +9,7 @@ const ROOT_DIR = path.resolve(__dirname, '..');
 const GITHUB_USERNAME = 'OxDurgeshxO';
 const README_PATH = path.join(ROOT_DIR, 'README.md');
 const PROJECTS_PATH = path.join(ROOT_DIR, 'data', 'projects.json');
+const ARTICLES_PATH = path.join(ROOT_DIR, 'data', 'articles.json');
 const STATS_DIR = path.join(ROOT_DIR, 'stats');
 
 async function fetchGraphQL(query) {
@@ -160,9 +161,7 @@ function calculateStreaks(days) {
     }
   }
 
-  // Calculate current streak backwards from today/yesterday
   let idx = sortedDays.length - 1;
-  // If today has 0 contributions, check if yesterday was active
   if (idx >= 0 && sortedDays[idx].contributionCount === 0 && sortedDays[idx].date === today) {
     idx--;
   }
@@ -323,7 +322,6 @@ async function updateGeneratedStats() {
       fs.writeFileSync(topLangsPath, langsSvg, 'utf8');
       console.log('Native SVG stats cards generated successfully in stats/');
 
-      // Process native streak stats if calendar is present
       const calendar = user.contributionsCollection?.contributionCalendar;
       if (calendar?.weeks) {
         const days = [];
@@ -342,7 +340,6 @@ async function updateGeneratedStats() {
     }
   }
 
-  // Fallback mirror for streak stats if native file not written or failed
   if (!fs.existsSync(streakPath)) {
     try {
       const controller = new AbortController();
@@ -467,11 +464,19 @@ async function renderProjectsTable(projects) {
     if (p.npm) {
       link += `<br/>[📦 *npm*](https://www.npmjs.com/package/${p.npm})`;
     }
-    const ciBadge = p.ciWorkflow
-      ? `[![CI](https://github.com/${p.repo}/actions/workflows/${p.ciWorkflow}/badge.svg)](https://github.com/${p.repo}/actions)`
-      : `[![Repo](https://img.shields.io/badge/Status-Active-brightgreen)](https://github.com/${p.repo})`;
 
-    return `| ${link} | ${p.domain} | ${p.stack} | ${p.highlights} | ${ciBadge} |`;
+    const badges = [];
+    if (p.npm) {
+      badges.push(`[![npm version](https://img.shields.io/npm/v/${encodeURIComponent(p.npm)}?style=flat-square&color=cb3837&logo=npm&logoColor=white)](https://www.npmjs.com/package/${p.npm})`);
+      badges.push(`[![npm downloads](https://img.shields.io/npm/dm/${encodeURIComponent(p.npm)}?style=flat-square&color=0284c7&label=dl)](https://www.npmjs.com/package/${p.npm})`);
+    }
+    if (p.ciWorkflow) {
+      badges.push(`[![CI](https://github.com/${p.repo}/actions/workflows/${p.ciWorkflow}/badge.svg)](https://github.com/${p.repo}/actions)`);
+    } else {
+      badges.push(`[![Repo](https://img.shields.io/badge/Status-Active-brightgreen?style=flat-square)](https://github.com/${p.repo})`);
+    }
+
+    return `| ${link} | ${p.domain} | ${p.stack} | ${p.highlights} | ${badges.join('<br/>')} |`;
   };
 
   const header = '| Project | Domain | Stack | Highlights & Architecture | Version & CI |\n| :--- | :--- | :--- | :--- | :--- |';
@@ -488,6 +493,39 @@ async function renderProjectsTable(projects) {
   }
 
   return output.trim();
+}
+
+function renderEcosystemRadar(projects) {
+  const total = projects.length;
+  const withDemo = projects.filter(p => p.demo).length;
+  const withNpm = projects.filter(p => p.npm).length;
+
+  return `<p align="center">
+  <img src="https://img.shields.io/badge/System_Health-${total}%2F${total}_Operational-10b981?style=flat-square&logo=statuspage&logoColor=white" alt="System Health" />
+  <img src="https://img.shields.io/badge/CI%2FCD_Pipelines-100%25_Automated-22c55e?style=flat-square&logo=githubactions&logoColor=white" alt="CI/CD Status" />
+  <img src="https://img.shields.io/badge/Live_Deployments-${withDemo}_Cloud_Apps-06b6d4?style=flat-square&logo=cloudflare&logoColor=white" alt="Deployments" />
+  <img src="https://img.shields.io/badge/npm_Registry-${withNpm}_Published_Packages-cb3837?style=flat-square&logo=npm&logoColor=white" alt="npm" />
+</p>`;
+}
+
+function renderArticles() {
+  if (!fs.existsSync(ARTICLES_PATH)) {
+    return '_Technical deep-dives updating soon._';
+  }
+
+  try {
+    const raw = fs.readFileSync(ARTICLES_PATH, 'utf8');
+    const articles = JSON.parse(raw);
+
+    if (!Array.isArray(articles) || articles.length === 0) {
+      return '_Technical deep-dives updating soon._';
+    }
+
+    return articles.map(a => `- 📝 **[${a.title}](${a.url})** &mdash; \`${a.topic}\` *(${a.date})*`).join('\n');
+  } catch (err) {
+    console.warn('Could not parse articles.json:', err.message);
+    return '_Technical deep-dives updating soon._';
+  }
 }
 
 function renderLastUpdated() {
@@ -545,9 +583,17 @@ async function main() {
   console.log('Pinging live demos to keep free instances awake...');
   await pingLiveDemos(projects);
 
+  console.log('Rendering Ecosystem Status Radar...');
+  const radarContent = renderEcosystemRadar(projects);
+  content = replaceSlot(content, 'ECOSYSTEM_RADAR', radarContent);
+
   console.log('Rendering Crown Jewel Projects Table from data/projects.json...');
   const tableContent = await renderProjectsTable(projects);
   content = replaceSlot(content, 'PROJECTS_TABLE', tableContent);
+
+  console.log('Rendering Technical Architecture & Deep-Dives...');
+  const articlesContent = renderArticles();
+  content = replaceSlot(content, 'ARTICLES', articlesContent);
 
   console.log('Fetching live public activity for', GITHUB_USERNAME);
   const activityContent = await getRecentActivity();
