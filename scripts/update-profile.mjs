@@ -460,22 +460,19 @@ async function renderProjectsTable(projects) {
     let link = `[**${p.name}**](https://github.com/${p.repo})`;
     if (p.demo) {
       link += `<br/>[🔗 *Live Demo*](${p.demo})`;
-    }
-    if (p.npm) {
-      link += `<br/>[📦 *npm*](https://www.npmjs.com/package/${p.npm})`;
+    } else if (p.package) {
+      link += `<br/>[📦 *${p.package}*](https://github.com/${p.repo})`;
     }
 
-    // Clean, single badge per row to avoid cell height bloat
-    const badge = p.npm
-      ? `[![npm](https://img.shields.io/npm/v/${encodeURIComponent(p.npm)}?style=flat-square&color=cb3837&logo=npm&logoColor=white)](https://www.npmjs.com/package/${p.npm})`
-      : (p.ciWorkflow
-        ? `[![CI](https://github.com/${p.repo}/actions/workflows/${p.ciWorkflow}/badge.svg)](https://github.com/${p.repo}/actions)`
-        : `[![Repo](https://img.shields.io/badge/Status-Active-brightgreen?style=flat-square)](https://github.com/${p.repo})`);
+    // Always use official verified GitHub Actions CI badge (zero npm 404 invalid badge)
+    const badge = p.ciWorkflow
+      ? `[![CI](https://github.com/${p.repo}/actions/workflows/${p.ciWorkflow}/badge.svg)](https://github.com/${p.repo}/actions)`
+      : `[![Repo](https://img.shields.io/badge/Status-Active-brightgreen?style=flat-square)](https://github.com/${p.repo})`;
 
     return `| ${link} | ${p.domain} | ${p.stack} | ${p.highlights} | ${badge} |`;
   };
 
-  const header = '| Project | Domain | Stack | Highlights & Architecture | Status | \n| :--- | :--- | :--- | :--- | :--- |';
+  const header = '| Project | Domain | Stack | Highlights & Architecture | CI Status | \n| :--- | :--- | :--- | :--- | :--- |';
 
   const featured = projects.filter(p => p.featured);
   const others = projects.filter(p => !p.featured);

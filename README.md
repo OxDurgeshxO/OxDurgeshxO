@@ -17,18 +17,18 @@
 
 <!-- NOTE: The projects table below is auto-generated from data/projects.json. Do NOT edit directly. Edit data/projects.json instead. -->
 <!-- PROJECTS_TABLE:START -->
-| Project | Domain | Stack | Highlights & Architecture | Status | 
+| Project | Domain | Stack | Highlights & Architecture | CI Status | 
 | :--- | :--- | :--- | :--- | :--- |
 | [**durgesh-flagship-portfolio**](https://github.com/OxDurgeshxO/durgesh-flagship-portfolio)<br/>[🔗 *Live Demo*](https://durgesh-portfolio.pages.dev) | 3D Interactive Web / Personal Brand | Next.js, Three.js, WebGPU WGSL, BVH | WebGPU compute shader particle physics engine with WebGL2 fallback, BVH spatial raycast tree, decoupled dynamic client islands, 0-error quality gate. | [![CI](https://github.com/OxDurgeshxO/durgesh-flagship-portfolio/actions/workflows/portfolio-quality.yml/badge.svg)](https://github.com/OxDurgeshxO/durgesh-flagship-portfolio/actions) |
-| [**mini-redis**](https://github.com/OxDurgeshxO/mini-redis)<br/>[📦 *npm*](https://www.npmjs.com/package/@oxdurgesh/mini-redis) | Systems Programming / In-Memory Store | TypeScript, TCP Sockets, RESP2/3, AOF WAL | Wire-compatible in-memory database with RESP3 Maps/Sets, Append-Only File persistence engine with `BGREWRITEAOF`, Node SEA native binaries, 44k+ req/sec. | [![npm](https://img.shields.io/npm/v/%40oxdurgesh%2Fmini-redis?style=flat-square&color=cb3837&logo=npm&logoColor=white)](https://www.npmjs.com/package/@oxdurgesh/mini-redis) |
-| [**fitness-platform-architecture**](https://github.com/OxDurgeshxO/fitness-platform-architecture)<br/>[📦 *npm*](https://www.npmjs.com/package/@oxdurgesh/pose-fsm) | Pose AI Engine & Biomechanics | TypeScript, 3D Kinematics, MediaPipe FSM | Headless `@oxdurgesh/pose-fsm` package, 3D Euclidean joint vector kinematics, knee valgus collapse detection, lumbar shear moment proxy, hysteresis FSM. | [![npm](https://img.shields.io/npm/v/%40oxdurgesh%2Fpose-fsm?style=flat-square&color=cb3837&logo=npm&logoColor=white)](https://www.npmjs.com/package/@oxdurgesh/pose-fsm) |
+| [**mini-redis**](https://github.com/OxDurgeshxO/mini-redis)<br/>[📦 *@oxdurgesh/mini-redis*](https://github.com/OxDurgeshxO/mini-redis) | Systems Programming / In-Memory Store | TypeScript, TCP Sockets, RESP2/3, AOF WAL | Wire-compatible in-memory database with RESP3 Maps/Sets, Append-Only File persistence engine with `BGREWRITEAOF`, Node SEA native binaries, 44k+ req/sec. | [![CI](https://github.com/OxDurgeshxO/mini-redis/actions/workflows/ci.yml/badge.svg)](https://github.com/OxDurgeshxO/mini-redis/actions) |
+| [**fitness-platform-architecture**](https://github.com/OxDurgeshxO/fitness-platform-architecture)<br/>[📦 *@oxdurgesh/pose-fsm*](https://github.com/OxDurgeshxO/fitness-platform-architecture) | Pose AI Engine & Biomechanics | TypeScript, 3D Kinematics, MediaPipe FSM | Headless `@oxdurgesh/pose-fsm` package, 3D Euclidean joint vector kinematics, knee valgus collapse detection, lumbar shear moment proxy, hysteresis FSM. | [![CI](https://github.com/OxDurgeshxO/fitness-platform-architecture/actions/workflows/ci.yml/badge.svg)](https://github.com/OxDurgeshxO/fitness-platform-architecture/actions) |
 | [**jarvis-realtime-assistant**](https://github.com/OxDurgeshxO/jarvis-realtime-assistant)<br/>[🔗 *Live Demo*](https://oxdurgeshxo.github.io/jarvis-realtime-assistant/) | Realtime Multimodal AI / Voice Agent | FastAPI, Gemini 2.0 Live, WebSockets, AudioWorklet | Zero-allocation 24kHz linear PCM circular ring buffer processor, client-side VAD energy detection, reactive Iron Man HUD telemetry, automated CI. | [![CI](https://github.com/OxDurgeshxO/jarvis-realtime-assistant/actions/workflows/deploy.yml/badge.svg)](https://github.com/OxDurgeshxO/jarvis-realtime-assistant/actions) |
 
 <details>
 <summary><b>📂 View 7 More Engineering Projects (Compilers, ML & 3D Tools)</b></summary>
 <br/>
 
-| Project | Domain | Stack | Highlights & Architecture | Status | 
+| Project | Domain | Stack | Highlights & Architecture | CI Status | 
 | :--- | :--- | :--- | :--- | :--- |
 | [**jugaadlang**](https://github.com/OxDurgeshxO/jugaadlang)<br/>[🔗 *Live Demo*](https://jugaadlang.netlify.app/) | Compilers / Programming Language | Python, Pratt Parser, WebAssembly, GitHub Pages | Hindi-keyword programming language with AST interpreter, automated binary builder, and live in-browser Web REPL playground. | [![CI](https://github.com/OxDurgeshxO/jugaadlang/actions/workflows/ci.yml/badge.svg)](https://github.com/OxDurgeshxO/jugaadlang/actions) |
 | [**RoleRadar**](https://github.com/OxDurgeshxO/RoleRadar)<br/>[🔗 *Live Demo*](https://rolefit-2.vercel.app) | Career Intelligence & ATS Resume Engine | Next.js, TypeScript, Vector DB, Drizzle ORM | In-memory dense vector store with exact cosine similarity search, topological skill prerequisite DAG engine, PDF/DOCX parsing, CodeQL SAST. | [![CI](https://github.com/OxDurgeshxO/RoleRadar/actions/workflows/codeql.yml/badge.svg)](https://github.com/OxDurgeshxO/RoleRadar/actions) |
@@ -95,6 +95,6 @@
 
 <!-- LAST_UPDATED:START -->
 <p align="center">
-  <sub>⚡ Last synchronized: <b>2026-11-21 13:43 UTC</b></sub>
+  <sub>⚡ Last synchronized: <b>2026-11-21 13:48 UTC</b></sub>
 </p>
 <!-- LAST_UPDATED:END -->

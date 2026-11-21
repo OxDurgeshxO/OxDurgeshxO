@@ -12,7 +12,7 @@
   {
     "name": "mini-redis",
     "repo": "OxDurgeshxO/mini-redis",
-    "npm": "@oxdurgesh/mini-redis",
+    "package": "@oxdurgesh/mini-redis",
     "domain": "Systems Programming / In-Memory Store",
     "stack": "TypeScript, TCP Sockets, RESP2/3, AOF WAL",
     "highlights": "Wire-compatible in-memory database with RESP3 Maps/Sets, Append-Only File persistence engine with `BGREWRITEAOF`, Node SEA native binaries, 44k+ req/sec.",
@@ -22,7 +22,7 @@
   {
     "name": "fitness-platform-architecture",
     "repo": "OxDurgeshxO/fitness-platform-architecture",
-    "npm": "@oxdurgesh/pose-fsm",
+    "package": "@oxdurgesh/pose-fsm",
     "domain": "Pose AI Engine & Biomechanics",
     "stack": "TypeScript, 3D Kinematics, MediaPipe FSM",
     "highlights": "Headless `@oxdurgesh/pose-fsm` package, 3D Euclidean joint vector kinematics, knee valgus collapse detection, lumbar shear moment proxy, hysteresis FSM.",
