@@ -41,6 +41,7 @@
 | [**MarketMatch-AI**](https://github.com/OxDurgeshxO/MarketMatch-AI)<br/>[🔗 *Live Demo*](https://oxdurgeshxo-marketmatch-ai-app-y8ysbm.streamlit.app/) | Retail Customer Analytics / Unsupervised ML | Streamlit, Scikit-Learn, Plotly, Pandas | RFM segmentation, K-Means & DBSCAN clustering, Silhouette validation, Nearest Neighbors recommendation. | [![CI](https://github.com/OxDurgeshxO/MarketMatch-AI/actions/workflows/ci.yml/badge.svg)](https://github.com/OxDurgeshxO/MarketMatch-AI/actions) |
 | [**bank-churn-prediction-studio**](https://github.com/OxDurgeshxO/bank-churn-prediction-studio)<br/>[🔗 *Live Demo*](https://bank-churn-prediction-studio-mrl8whyxpnhkyfvfwmtqwq.streamlit.app/) | Financial Risk Classification / Explainable ML | Streamlit, XGBoost, SHAP, SMOTE | Imbalanced data handling with SMOTE, ROC-AUC metric optimization, SHAP tree explainability, fintech dashboard. | [![CI](https://github.com/OxDurgeshxO/bank-churn-prediction-studio/actions/workflows/ci.yml/badge.svg)](https://github.com/OxDurgeshxO/bank-churn-prediction-studio/actions) |
 | [**CNN-STREAMLIT**](https://github.com/OxDurgeshxO/CNN-STREAMLIT)<br/>[🔗 *Live Demo*](https://cnn-app-dmfd7b76fxyrnvrhzpkgay.streamlit.app/) | Deep Learning / Computer Vision Studio | PyTorch, Streamlit, Plotly, NumPy | Fashion-MNIST deep convolutional network (89.3% accuracy), real-time interactive canvas inference. | [![CI](https://github.com/OxDurgeshxO/CNN-STREAMLIT/actions/workflows/ci.yml/badge.svg)](https://github.com/OxDurgeshxO/CNN-STREAMLIT/actions) |
+
 </details>
 <!-- PROJECTS_TABLE:END -->
 
@@ -61,11 +62,11 @@
 
 <!-- NOTE: Recent activity below is auto-generated via GitHub Events API. -->
 <!-- ACTIVITY:START -->
+- 🚀 **2026-11-21** &mdash; Pushed to [`OxDurgeshxO/OxDurgeshxO`](https://github.com/OxDurgeshxO/OxDurgeshxO): *Code improvements*
 - ⭐ **2026-11-20** &mdash; Starred [`deepseek-ai/deepseek-harness`](https://github.com/deepseek-ai/deepseek-harness)
 - ⭐ **2026-11-19** &mdash; Starred [`multica-ai/andrej-karpathy-skills`](https://github.com/multica-ai/andrej-karpathy-skills)
 - ⭐ **2026-11-19** &mdash; Starred [`gitleaks/gitleaks`](https://github.com/gitleaks/gitleaks)
 - ⭐ **2026-11-19** &mdash; Starred [`GoogleChrome/lighthouse`](https://github.com/GoogleChrome/lighthouse)
-- ⭐ **2026-11-19** &mdash; Starred [`mcollina/autocannon`](https://github.com/mcollina/autocannon)
 <!-- ACTIVITY:END -->
 
 ---
@@ -98,6 +99,6 @@
 
 <!-- LAST_UPDATED:START -->
 <p align="center">
-  <sub>⚡ Last synchronized: <b>2026-11-21 13:48 UTC</b></sub>
+  <sub>⚡ Last synchronized: <b>2026-11-21 14:00 UTC</b></sub>
 </p>
 <!-- LAST_UPDATED:END -->
