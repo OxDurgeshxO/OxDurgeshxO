@@ -407,7 +407,7 @@ async function getRecentActivity() {
     const formatted = [];
 
     for (const e of events) {
-      if (formatted.length >= 6) break;
+      if (formatted.length >= 5) break;
 
       const repoName = e.repo.name;
       const date = new Date(e.created_at).toISOString().split('T')[0];
@@ -465,21 +465,17 @@ async function renderProjectsTable(projects) {
       link += `<br/>[📦 *npm*](https://www.npmjs.com/package/${p.npm})`;
     }
 
-    const badges = [];
-    if (p.npm) {
-      badges.push(`[![npm version](https://img.shields.io/npm/v/${encodeURIComponent(p.npm)}?style=flat-square&color=cb3837&logo=npm&logoColor=white)](https://www.npmjs.com/package/${p.npm})`);
-      badges.push(`[![npm downloads](https://img.shields.io/npm/dm/${encodeURIComponent(p.npm)}?style=flat-square&color=0284c7&label=dl)](https://www.npmjs.com/package/${p.npm})`);
-    }
-    if (p.ciWorkflow) {
-      badges.push(`[![CI](https://github.com/${p.repo}/actions/workflows/${p.ciWorkflow}/badge.svg)](https://github.com/${p.repo}/actions)`);
-    } else {
-      badges.push(`[![Repo](https://img.shields.io/badge/Status-Active-brightgreen?style=flat-square)](https://github.com/${p.repo})`);
-    }
+    // Clean, single badge per row to avoid cell height bloat
+    const badge = p.npm
+      ? `[![npm](https://img.shields.io/npm/v/${encodeURIComponent(p.npm)}?style=flat-square&color=cb3837&logo=npm&logoColor=white)](https://www.npmjs.com/package/${p.npm})`
+      : (p.ciWorkflow
+        ? `[![CI](https://github.com/${p.repo}/actions/workflows/${p.ciWorkflow}/badge.svg)](https://github.com/${p.repo}/actions)`
+        : `[![Repo](https://img.shields.io/badge/Status-Active-brightgreen?style=flat-square)](https://github.com/${p.repo})`);
 
-    return `| ${link} | ${p.domain} | ${p.stack} | ${p.highlights} | ${badges.join('<br/>')} |`;
+    return `| ${link} | ${p.domain} | ${p.stack} | ${p.highlights} | ${badge} |`;
   };
 
-  const header = '| Project | Domain | Stack | Highlights & Architecture | Version & CI |\n| :--- | :--- | :--- | :--- | :--- |';
+  const header = '| Project | Domain | Stack | Highlights & Architecture | Status | \n| :--- | :--- | :--- | :--- | :--- |';
 
   const featured = projects.filter(p => p.featured);
   const others = projects.filter(p => !p.featured);
@@ -495,19 +491,6 @@ async function renderProjectsTable(projects) {
   return output.trim();
 }
 
-function renderEcosystemRadar(projects) {
-  const total = projects.length;
-  const withDemo = projects.filter(p => p.demo).length;
-  const withNpm = projects.filter(p => p.npm).length;
-
-  return `<p align="center">
-  <img src="https://img.shields.io/badge/System_Health-${total}%2F${total}_Operational-10b981?style=flat-square&logo=statuspage&logoColor=white" alt="System Health" />
-  <img src="https://img.shields.io/badge/CI%2FCD_Pipelines-100%25_Automated-22c55e?style=flat-square&logo=githubactions&logoColor=white" alt="CI/CD Status" />
-  <img src="https://img.shields.io/badge/Live_Deployments-${withDemo}_Cloud_Apps-06b6d4?style=flat-square&logo=cloudflare&logoColor=white" alt="Deployments" />
-  <img src="https://img.shields.io/badge/npm_Registry-${withNpm}_Published_Packages-cb3837?style=flat-square&logo=npm&logoColor=white" alt="npm" />
-</p>`;
-}
-
 function renderArticles() {
   if (!fs.existsSync(ARTICLES_PATH)) {
     return '_Technical deep-dives updating soon._';
@@ -521,7 +504,7 @@ function renderArticles() {
       return '_Technical deep-dives updating soon._';
     }
 
-    return articles.map(a => `- 📝 **[${a.title}](${a.url})** &mdash; \`${a.topic}\` *(${a.date})*`).join('\n');
+    return articles.map(a => `- 📝 **[${a.title}](${a.url})** &mdash; \`${a.topic}\``).join('\n');
   } catch (err) {
     console.warn('Could not parse articles.json:', err.message);
     return '_Technical deep-dives updating soon._';
@@ -582,10 +565,6 @@ async function main() {
 
   console.log('Pinging live demos to keep free instances awake...');
   await pingLiveDemos(projects);
-
-  console.log('Rendering Ecosystem Status Radar...');
-  const radarContent = renderEcosystemRadar(projects);
-  content = replaceSlot(content, 'ECOSYSTEM_RADAR', radarContent);
 
   console.log('Rendering Crown Jewel Projects Table from data/projects.json...');
   const tableContent = await renderProjectsTable(projects);
