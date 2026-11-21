@@ -10,20 +10,20 @@
   </g>
   <g transform="translate(25, 55)">
     <rect x="0" y="0" width="440" height="10" rx="5" fill="#24283b"/>
-    <g><rect x="0" y="0" width="304.1" height="10" fill="#3178c6" rx="2"/><rect x="304.1" y="0" width="93.1" height="10" fill="#3572A5" rx="2"/><rect x="397.20000000000005" y="0" width="18.4" height="10" fill="#f1e05a" rx="2"/><rect x="415.6" y="0" width="15.3" height="10" fill="#e34c26" rx="2"/><rect x="430.90000000000003" y="0" width="4.8" height="10" fill="#89e051" rx="2"/></g>
+    <g><rect x="0" y="0" width="304.5" height="10" fill="#3178c6" rx="2"/><rect x="304.5" y="0" width="92.6" height="10" fill="#3572A5" rx="2"/><rect x="397.1" y="0" width="18.5" height="10" fill="#f1e05a" rx="2"/><rect x="415.6" y="0" width="15.2" height="10" fill="#e34c26" rx="2"/><rect x="430.8" y="0" width="4.8" height="10" fill="#89e051" rx="2"/></g>
   </g>
   <g transform="translate(25, 85)">
     
     <g transform="translate(0, 0)">
       <circle cx="6" cy="6" r="5" fill="#3178c6"/>
       <text x="22" y="10" class="label">TypeScript</text>
-      <text x="160" y="10" class="stat">69.1%</text>
+      <text x="160" y="10" class="stat">69.2%</text>
     </g>
   
     <g transform="translate(0, 24)">
       <circle cx="6" cy="6" r="5" fill="#3572A5"/>
       <text x="22" y="10" class="label">Python</text>
-      <text x="160" y="10" class="stat">21.2%</text>
+      <text x="160" y="10" class="stat">21.0%</text>
     </g>
   
     <g transform="translate(0, 48)">
