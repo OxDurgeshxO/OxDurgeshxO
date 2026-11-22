@@ -5,6 +5,10 @@
 </p>
 
 <p align="center">
+  <img src="https://raw.githubusercontent.com/OxDurgeshxO/OxDurgeshxO/main/assets/architecture-topology.svg" width="100%" alt="Durgesh Engineering Architecture Topology" />
+</p>
+
+<p align="center">
   <a href="https://durgesh-portfolio.pages.dev"><img src="https://img.shields.io/badge/Portfolio-durgesh--portfolio.pages.dev-0ea5e9?style=flat-square&logo=three.js&logoColor=white" alt="Portfolio" /></a>
   <a href="https://linkedin.com/in/durgesh-dutt-sinha"><img src="https://img.shields.io/badge/LinkedIn-Connect-0077b5?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
   <a href="https://github.com/OxDurgeshxO"><img src="https://img.shields.io/badge/GitHub-OxDurgeshxO-181717?style=flat-square&logo=github&logoColor=white" alt="GitHub" /></a>

@@ -1,0 +1,74 @@
+<svg width="900" height="135" viewBox="0 0 900 135" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    :root {
+      --bg: #1a1b27;
+      --card-bg: #1f2335;
+      --border: #292e42;
+      --title: #7aa2f7;
+      --sub: #7dcfff;
+      --tag: #bb9af7;
+      --metric: #9ece6a;
+      --desc: #a9b1d6;
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f8fafc;
+        --card-bg: #ffffff;
+        --border: #e2e8f0;
+        --title: #0369a1;
+        --sub: #0284c7;
+        --tag: #7c3aed;
+        --metric: #15803d;
+        --desc: #475569;
+      }
+    }
+    .base-bg { fill: var(--bg); stroke: var(--border); stroke-width: 1px; rx: 10px; }
+    .card-box { fill: var(--card-bg); stroke: var(--border); stroke-width: 1px; rx: 8px; }
+    .pillar-title { font: 700 13px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; fill: var(--title); }
+    .pillar-sub { font: 600 11px 'Fira Code', monospace; fill: var(--sub); }
+    .pillar-desc { font: 400 10.5px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; fill: var(--desc); }
+    .pillar-tag { font: 700 10px 'Fira Code', monospace; fill: var(--tag); }
+  </style>
+
+  <rect width="900" height="135" class="base-bg"/>
+
+  <!-- Pod 1: 3D Graphics & WebGPU -->
+  <g transform="translate(15, 12)">
+    <rect width="205" height="110" class="card-box"/>
+    <text x="14" y="26" class="pillar-title">3D Interactive Web</text>
+    <text x="14" y="44" class="pillar-sub">WebGPU · WGSL · Three.js</text>
+    <text x="14" y="66" class="pillar-desc">Compute shader particle physics</text>
+    <text x="14" y="81" class="pillar-desc">BVH spatial raycast tree engine</text>
+    <text x="14" y="99" class="pillar-tag">⚡ 60 FPS Locked</text>
+  </g>
+
+  <!-- Pod 2: Systems Programming -->
+  <g transform="translate(235, 12)">
+    <rect width="205" height="110" class="card-box"/>
+    <text x="14" y="26" class="pillar-title">Systems Programming</text>
+    <text x="14" y="44" class="pillar-sub">RESP3 · TCP · AOF WAL</text>
+    <text x="14" y="66" class="pillar-desc">In-memory Redis wire engine</text>
+    <text x="14" y="81" class="pillar-desc">Node SEA standalone binary</text>
+    <text x="14" y="99" class="pillar-tag">🚀 44k+ req/sec</text>
+  </g>
+
+  <!-- Pod 3: Realtime Multimodal AI -->
+  <g transform="translate(455, 12)">
+    <rect width="205" height="110" class="card-box"/>
+    <text x="14" y="26" class="pillar-title">Realtime Multimodal AI</text>
+    <text x="14" y="44" class="pillar-sub">FastAPI · Gemini Live · PCM</text>
+    <text x="14" y="66" class="pillar-desc">24kHz AudioWorklet ring buffer</text>
+    <text x="14" y="81" class="pillar-desc">Reactive Iron Man telemetry HUD</text>
+    <text x="14" y="99" class="pillar-tag">🎙️ Sub-400ms Turn</text>
+  </g>
+
+  <!-- Pod 4: Computer Vision Biomechanics -->
+  <g transform="translate(675, 12)">
+    <rect width="210" height="110" class="card-box"/>
+    <text x="14" y="26" class="pillar-title">Biomechanics Pose AI</text>
+    <text x="14" y="44" class="pillar-sub">MediaPipe · 3D Kinematics</text>
+    <text x="14" y="66" class="pillar-desc">3D Euclidean joint vectors</text>
+    <text x="14" y="81" class="pillar-desc">Valgus & lumbar shear FSM</text>
+    <text x="14" y="99" class="pillar-tag">📊 33 Keypoints / 60 FPS</text>
+  </g>
+</svg>

@@ -10,6 +10,7 @@ const PROJECTS_PATH = path.join(ROOT_DIR, 'data', 'projects.json');
 const ARTICLES_PATH = path.join(ROOT_DIR, 'data', 'articles.json');
 const STATUS_PATH = path.join(ROOT_DIR, 'data', 'status.json');
 const STATS_DIR = path.join(ROOT_DIR, 'stats');
+const ASSETS_DIR = path.join(ROOT_DIR, 'assets');
 const README_PATH = path.join(ROOT_DIR, 'README.md');
 
 let failures = 0;
@@ -26,8 +27,9 @@ function assert(condition, message) {
 console.log('Running Profile Quality Gate & Schema Tests...');
 
 // 1. Validate projects.json
+let projects = [];
 try {
-  const projects = JSON.parse(fs.readFileSync(PROJECTS_PATH, 'utf8'));
+  projects = JSON.parse(fs.readFileSync(PROJECTS_PATH, 'utf8'));
   assert(Array.isArray(projects) && projects.length >= 10, `projects.json contains ${projects.length} entries (min 10)`);
   const required = ['name', 'repo', 'domain', 'stack', 'highlights'];
   for (const p of projects) {
@@ -40,8 +42,9 @@ try {
 }
 
 // 2. Validate articles.json
+let articles = [];
 try {
-  const articles = JSON.parse(fs.readFileSync(ARTICLES_PATH, 'utf8'));
+  articles = JSON.parse(fs.readFileSync(ARTICLES_PATH, 'utf8'));
   assert(Array.isArray(articles) && articles.length > 0, `articles.json has ${articles.length} entries`);
   for (const a of articles) {
     assert(!!a.title && !!a.url && !!a.topic, `Article '${a.title}' has title, url, topic`);
@@ -58,7 +61,7 @@ try {
   assert(false, `status.json parsing failed: ${e.message}`);
 }
 
-// 4. Validate SVG files
+// 4. Validate SVG files & Theme-Adaptive styles
 const svgs = ['github-stats.svg', 'top-langs.svg', 'streak-stats.svg'];
 for (const svg of svgs) {
   const p = path.join(STATS_DIR, svg);
@@ -66,16 +69,41 @@ for (const svg of svgs) {
   if (fs.existsSync(p)) {
     const content = fs.readFileSync(p, 'utf8');
     assert(content.includes('<svg') && content.includes('</svg>'), `SVG ${svg} contains valid <svg> markup`);
+    assert(content.includes('prefers-color-scheme: light'), `SVG ${svg} has light mode adaptive styles`);
     assert(content.length > 300, `SVG ${svg} size (${content.length}b) is non-empty`);
   }
 }
 
-// 5. Validate README slot markers
+// 5. Validate Architecture Topology Banner
+const bannerPath = path.join(ASSETS_DIR, 'architecture-topology.svg');
+assert(fs.existsSync(bannerPath), `Banner architecture-topology.svg exists on disk`);
+if (fs.existsSync(bannerPath)) {
+  const bannerContent = fs.readFileSync(bannerPath, 'utf8');
+  assert(bannerContent.includes('<svg') && bannerContent.includes('</svg>'), `Banner contains valid <svg> markup`);
+  assert(bannerContent.includes('prefers-color-scheme: light'), `Banner contains light mode adaptive styles`);
+}
+
+// 6. Validate README slot markers & link health
 try {
   const readme = fs.readFileSync(README_PATH, 'utf8');
   const requiredSlots = ['FOCUS', 'PROJECTS_TABLE', 'ARTICLES', 'ACTIVITY', 'LAST_UPDATED'];
   for (const slot of requiredSlots) {
     assert(readme.includes(`<!-- ${slot}:START -->`) && readme.includes(`<!-- ${slot}:END -->`), `README.md contains slot '${slot}'`);
+  }
+
+  // Check URL scheme validity across resources
+  assert(readme.includes('https://durgesh-portfolio.pages.dev/resume.pdf'), 'README links directly to verified resume.pdf');
+  assert(readme.includes('assets/architecture-topology.svg'), 'README embeds architecture topology banner');
+
+  for (const p of projects) {
+    assert(p.repo.includes('/'), `Project '${p.name}' repo slug is valid`);
+    if (p.demo) {
+      assert(p.demo.startsWith('https://'), `Project '${p.name}' demo uses HTTPS`);
+    }
+  }
+
+  for (const a of articles) {
+    assert(a.url.startsWith('https://github.com/OxDurgeshxO/'), `Article '${a.title}' links to verified GitHub documentation`);
   }
 } catch (e) {
   assert(false, `README.md reading failed: ${e.message}`);

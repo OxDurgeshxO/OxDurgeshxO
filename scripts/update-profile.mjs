@@ -43,12 +43,28 @@ async function fetchGraphQL(query) {
 function generateStatsSvg({ totalStars, totalCommits, totalPRs, totalIssues, contributedTo }) {
   return `<svg width="495" height="195" viewBox="0 0 495 195" fill="none" xmlns="http://www.w3.org/2000/svg">
   <style>
-    .title { font: 700 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Ubuntu, sans-serif; fill: #70a5fd; }
-    .label { font: 400 14px -apple-system, BlinkMacSystemFont, 'Segoe UI', Ubuntu, sans-serif; fill: #a9b1d6; }
-    .stat { font: 700 14px -apple-system, BlinkMacSystemFont, 'Segoe UI', Ubuntu, sans-serif; fill: #38bdf8; }
-    .icon { fill: #bb9af7; }
+    :root {
+      --bg: #1a1b27;
+      --border: #24283b;
+      --title: #70a5fd;
+      --label: #a9b1d6;
+      --stat: #38bdf8;
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f8fafc;
+        --border: #e2e8f0;
+        --title: #0284c7;
+        --label: #475569;
+        --stat: #0f172a;
+      }
+    }
+    .card-bg { fill: var(--bg); stroke: var(--border); }
+    .title { font: 700 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Ubuntu, sans-serif; fill: var(--title); }
+    .label { font: 400 14px -apple-system, BlinkMacSystemFont, 'Segoe UI', Ubuntu, sans-serif; fill: var(--label); }
+    .stat { font: 700 14px -apple-system, BlinkMacSystemFont, 'Segoe UI', Ubuntu, sans-serif; fill: var(--stat); }
   </style>
-  <rect x="0.5" y="0.5" rx="10" height="99%" width="494" fill="#1a1b27" stroke="#24283b" stroke-width="1"/>
+  <rect x="0.5" y="0.5" rx="10" height="99%" width="494" class="card-bg" stroke-width="1"/>
   <g transform="translate(25, 35)">
     <text x="0" y="0" class="title">OxDurgeshxO's GitHub Stats</text>
   </g>
@@ -120,16 +136,36 @@ function generateTopLangsSvg(languages) {
 
   return `<svg width="495" height="195" viewBox="0 0 495 195" fill="none" xmlns="http://www.w3.org/2000/svg">
   <style>
-    .title { font: 700 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Ubuntu, sans-serif; fill: #70a5fd; }
-    .label { font: 400 13px -apple-system, BlinkMacSystemFont, 'Segoe UI', Ubuntu, sans-serif; fill: #a9b1d6; }
-    .stat { font: 700 13px -apple-system, BlinkMacSystemFont, 'Segoe UI', Ubuntu, sans-serif; fill: #38bdf8; }
+    :root {
+      --bg: #1a1b27;
+      --border: #24283b;
+      --track: #24283b;
+      --title: #70a5fd;
+      --label: #a9b1d6;
+      --stat: #38bdf8;
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f8fafc;
+        --border: #e2e8f0;
+        --track: #e2e8f0;
+        --title: #0284c7;
+        --label: #475569;
+        --stat: #0f172a;
+      }
+    }
+    .card-bg { fill: var(--bg); stroke: var(--border); }
+    .bar-track { fill: var(--track); }
+    .title { font: 700 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Ubuntu, sans-serif; fill: var(--title); }
+    .label { font: 400 13px -apple-system, BlinkMacSystemFont, 'Segoe UI', Ubuntu, sans-serif; fill: var(--label); }
+    .stat { font: 700 13px -apple-system, BlinkMacSystemFont, 'Segoe UI', Ubuntu, sans-serif; fill: var(--stat); }
   </style>
-  <rect x="0.5" y="0.5" rx="10" height="99%" width="494" fill="#1a1b27" stroke="#24283b" stroke-width="1"/>
+  <rect x="0.5" y="0.5" rx="10" height="99%" width="494" class="card-bg" stroke-width="1"/>
   <g transform="translate(25, 35)">
     <text x="0" y="0" class="title">Most Used Languages</text>
   </g>
   <g transform="translate(25, 55)">
-    <rect x="0" y="0" width="440" height="10" rx="5" fill="#24283b"/>
+    <rect x="0" y="0" width="440" height="10" rx="5" class="bar-track"/>
     <g>${progressBars}</g>
   </g>
   <g transform="translate(25, 85)">
@@ -194,15 +230,40 @@ function generateNativeStreakSvg({ total, currentStreak, longestStreak, currentS
 
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 495 195" width="495px" height="195px">
   <style>
-    .title { font: 700 14px -apple-system, BlinkMacSystemFont, 'Segoe UI', Ubuntu, sans-serif; fill: #70A5FD; }
-    .label { font: 400 12px -apple-system, BlinkMacSystemFont, 'Segoe UI', Ubuntu, sans-serif; fill: #38BDAE; }
-    .num { font: 700 28px -apple-system, BlinkMacSystemFont, 'Segoe UI', Ubuntu, sans-serif; fill: #70A5FD; }
-    .curr { font: 700 28px -apple-system, BlinkMacSystemFont, 'Segoe UI', Ubuntu, sans-serif; fill: #BF91F3; }
-    .curr-label { font: 700 14px -apple-system, BlinkMacSystemFont, 'Segoe UI', Ubuntu, sans-serif; fill: #BF91F3; }
+    :root {
+      --bg: #1a1b27;
+      --border: #24283b;
+      --line: #24283b;
+      --title: #70A5FD;
+      --label: #38BDAE;
+      --num: #70A5FD;
+      --curr: #BF91F3;
+      --ring: #70A5FD;
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f8fafc;
+        --border: #e2e8f0;
+        --line: #e2e8f0;
+        --title: #0369a1;
+        --label: #0d9488;
+        --num: #0284c7;
+        --curr: #7c3aed;
+        --ring: #0284c7;
+      }
+    }
+    .card-bg { fill: var(--bg); stroke: var(--border); }
+    .div-line { stroke: var(--line); }
+    .ring-line { stroke: var(--ring); }
+    .title { font: 700 14px -apple-system, BlinkMacSystemFont, 'Segoe UI', Ubuntu, sans-serif; fill: var(--title); }
+    .label { font: 400 12px -apple-system, BlinkMacSystemFont, 'Segoe UI', Ubuntu, sans-serif; fill: var(--label); }
+    .num { font: 700 28px -apple-system, BlinkMacSystemFont, 'Segoe UI', Ubuntu, sans-serif; fill: var(--num); }
+    .curr { font: 700 28px -apple-system, BlinkMacSystemFont, 'Segoe UI', Ubuntu, sans-serif; fill: var(--curr); }
+    .curr-label { font: 700 14px -apple-system, BlinkMacSystemFont, 'Segoe UI', Ubuntu, sans-serif; fill: var(--curr); }
   </style>
-  <rect x="0.5" y="0.5" rx="8" height="194" width="494" fill="#1A1B27" stroke="#24283b" stroke-width="1"/>
-  <line x1="165" y1="28" x2="165" y2="170" stroke="#24283b" stroke-width="1"/>
-  <line x1="330" y1="28" x2="330" y2="170" stroke="#24283b" stroke-width="1"/>
+  <rect x="0.5" y="0.5" rx="8" height="194" width="494" class="card-bg" stroke-width="1"/>
+  <line x1="165" y1="28" x2="165" y2="170" class="div-line" stroke-width="1"/>
+  <line x1="330" y1="28" x2="330" y2="170" class="div-line" stroke-width="1"/>
 
   <!-- Total Contributions -->
   <g transform="translate(82.5, 48)">
@@ -213,7 +274,7 @@ function generateNativeStreakSvg({ total, currentStreak, longestStreak, currentS
 
   <!-- Current Streak -->
   <g transform="translate(247.5, 48)">
-    <circle cx="0" cy="22" r="38" fill="none" stroke="#70A5FD" stroke-width="4"/>
+    <circle cx="0" cy="22" r="38" fill="none" class="ring-line" stroke-width="4"/>
     <text x="0" y="32" text-anchor="middle" class="curr">${currentStreak}</text>
     <text x="0" y="80" text-anchor="middle" class="curr-label">Current Streak</text>
     <text x="0" y="102" text-anchor="middle" class="label">${streakRange}</text>
@@ -380,6 +441,21 @@ async function pingLiveDemos(projects) {
 }
 
 function renderFocusStatus() {
+  // Support GitHub Actions 1-Click Dispatch inputs
+  if (process.env.INPUT_FOCUS_PROJECT) {
+    try {
+      const updated = {
+        project: process.env.INPUT_FOCUS_PROJECT,
+        focus: process.env.INPUT_FOCUS_TEXT || 'Active engineering milestone',
+        url: process.env.INPUT_FOCUS_URL || `https://github.com/${GITHUB_USERNAME}/${process.env.INPUT_FOCUS_PROJECT}`,
+      };
+      fs.writeFileSync(STATUS_PATH, JSON.stringify(updated, null, 2) + '\n');
+      console.log(`Updated status.json from dispatch inputs: ${updated.project}`);
+    } catch (e) {
+      console.warn('Failed to update status.json from dispatch inputs:', e.message);
+    }
+  }
+
   if (!fs.existsSync(STATUS_PATH)) {
     return '> 🔭 **Currently Building:** [**durgesh-flagship-portfolio**](https://github.com/OxDurgeshxO/durgesh-flagship-portfolio) &mdash; *Architecting Next.js 3D WebGPU particle physics compute engine*';
   }
