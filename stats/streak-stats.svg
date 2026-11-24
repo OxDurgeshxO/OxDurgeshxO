@@ -37,7 +37,7 @@
 
   <!-- Total Contributions -->
   <g transform="translate(82.5, 48)">
-    <text x="0" y="32" text-anchor="middle" class="num">395</text>
+    <text x="0" y="32" text-anchor="middle" class="num">396</text>
     <text x="0" y="65" text-anchor="middle" class="title">Total Contributions</text>
     <text x="0" y="90" text-anchor="middle" class="label">Past Year</text>
   </g>
@@ -45,15 +45,15 @@
   <!-- Current Streak -->
   <g transform="translate(247.5, 48)">
     <circle cx="0" cy="22" r="38" fill="none" class="ring-line" stroke-width="4"/>
-    <text x="0" y="32" text-anchor="middle" class="curr">11</text>
+    <text x="0" y="32" text-anchor="middle" class="curr">12</text>
     <text x="0" y="80" text-anchor="middle" class="curr-label">Current Streak</text>
-    <text x="0" y="102" text-anchor="middle" class="label">Nov 13 - Nov 23</text>
+    <text x="0" y="102" text-anchor="middle" class="label">Nov 13 - Nov 24</text>
   </g>
 
   <!-- Longest Streak -->
   <g transform="translate(412.5, 48)">
-    <text x="0" y="32" text-anchor="middle" class="num">11</text>
+    <text x="0" y="32" text-anchor="middle" class="num">12</text>
     <text x="0" y="65" text-anchor="middle" class="title">Longest Streak</text>
-    <text x="0" y="90" text-anchor="middle" class="label">11 Days Max</text>
+    <text x="0" y="90" text-anchor="middle" class="label">12 Days Max</text>
   </g>
 </svg>
