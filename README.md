@@ -66,11 +66,11 @@
 
 <!-- NOTE: Recent activity below is auto-generated via GitHub Events API. -->
 <!-- ACTIVITY:START -->
-- ⭐ **2026-11-25** &mdash; Starred [`stablyai/orca`](https://github.com/stablyai/orca)
-- ⭐ **2026-11-25** &mdash; Starred [`DavidHDev/react-bits`](https://github.com/DavidHDev/react-bits)
-- ⭐ **2026-11-24** &mdash; Starred [`duolahypercho/codex-router`](https://github.com/duolahypercho/codex-router)
-- ⭐ **2026-11-24** &mdash; Starred [`shirudo-dev/shirudo`](https://github.com/shirudo-dev/shirudo)
-- ⭐ **2026-11-23** &mdash; Starred [`PostHog/posthog`](https://github.com/PostHog/posthog)
+- ⭐ **2026-11-26** &mdash; Starred [`Jakubantalik/transitions.dev`](https://github.com/Jakubantalik/transitions.dev)
+- ⭐ **2026-11-26** &mdash; Starred [`microsoft/playwright-cli`](https://github.com/microsoft/playwright-cli)
+- ⭐ **2026-11-26** &mdash; Starred [`greensock/gsap-skills`](https://github.com/greensock/gsap-skills)
+- ⭐ **2026-11-26** &mdash; Starred [`Manavarya09/design-extract`](https://github.com/Manavarya09/design-extract)
+- ⭐ **2026-11-26** &mdash; Starred [`pbakaus/impeccable`](https://github.com/pbakaus/impeccable)
 <!-- ACTIVITY:END -->
 
 ---
@@ -103,6 +103,6 @@
 
 <!-- LAST_UPDATED:START -->
 <p align="center">
-  <sub>⚡ Last synchronized: <b>2026-11-26 15:52 UTC</b></sub>
+  <sub>⚡ Last synchronized: <b>2026-11-27 01:12 UTC</b></sub>
 </p>
 <!-- LAST_UPDATED:END -->
